@@ -25,7 +25,7 @@
 
 }
 
-/* Responsive cho Tablet dọc */
+/* Responsive cho Mobile */
 @media (max-width:768px){
     .menu-btn{
         display:block;
@@ -112,98 +112,3 @@
 
 }
 
-/* Responsive cho Mobile */
-@media (max-width: 576px) {
-    
-    body {
-        background-size: auto 100vh;
-        background-position: center top;
-    }
-
-    /* Navbar */
-    nav {
-        padding: 15px;
-
-        position: relative;
-    }
-
-    nav ul {
-        gap: 10px;
-    }
-
-    .nav-menu {
-    display: none;
-
-    position: absolute; /* lay nav lam moc */
-    top: 95%;
-    right: 0;
-
-    width: 220px;
-
-    flex-direction: column;
-
-    background: rgba(18,18,18,0.9);;
-
-    border-radius: 10px;
-
-    position: fixed;
-
-    padding: 10px;
-
-
-}
-
-    nav a {
-        font-size: 14px;
-    }
-
-    /* Hero */
-    .hero {
-        padding: 30px 15px;
-    }
-
-    .hero h2 {
-        font-size: 40px;
-    }
-
-    .hero p {
-        font-size: 16px;
-    }
-
-    .hero-buttons a {
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-    }
-
-    /* Các section */
-    .top-rated,
-    .genres,
-    footer {
-        padding: 30px 15px;
-    }
-
-    /* Tiêu đề */
-    .hero h2 {
-        font-size: 40px;
-    }
-    .top-rated h2,
-    .genres h2,
-    footer h2 {
-        font-size: 28px;
-    }
-
-    .genre h3 {
-        font-size: 22px;
-    }
-
-    /* Card */
-    .movie-card img {
-        height: 250px;
-    }
-
-    .movie-card h4 {
-        font-size: 18px;
-    }
-
-}

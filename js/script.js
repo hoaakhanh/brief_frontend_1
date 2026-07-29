@@ -11,13 +11,6 @@ favoriteButtons.forEach(function (button) {
     });
 });
 
-/* Hieu ung cho 1 button watch now Featured Anime */
-const movieButton = document.querySelector(".hero #watch-now"); /* chon tat ca cac button co class top-button */
-movieButton.addEventListener("click", function () {
-    movieButton.textContent = "🎬 Watching...";
-});
-
-
 /* Login form validation */
 const loginBtn = document.querySelector(".login-btn");
 const closeBtn = document.querySelector(".close-btn");
@@ -212,6 +205,22 @@ function createAnimeCard(anime) {
     
 };
 
+// Feature function
+const featuredTitle = document.querySelector("#featured-title");
+const featuredDescription = document.querySelector("#featured-description");
+const featuredDetailBtn = document.querySelector("#featured-detail-btn");
+const featuredImage = document.querySelector(".featured-image");
+    
+function renderFeaturedAinme(anime) {
+    featuredImage.src = anime.images.jpg.large_image_url;
+
+    featuredImage.alt = anime.title;
+
+    featuredTitle.textContent = anime.title;
+
+    featuredDescription.textContent = anime.synopsis || "No synopsis available.";
+
+}
 
 /* API */
 const animeList = document.querySelector("#anime-list");
@@ -219,6 +228,12 @@ const animeList = document.querySelector("#anime-list");
 fetch("https://api.jikan.moe/v4/top/anime")
     .then(response => response.json())
     .then(result => {
+        // Feature
+        const featuredAnime = result.data[0];
+
+        renderFeaturedAinme(featuredAnime);
+
+        // Top-Rated
         result.data.forEach(anime => { /* lay tu kho ttin */
         
             const card = createAnimeCard(anime);
@@ -298,16 +313,47 @@ favoriteLink.addEventListener("click", function() {
     }
 
     // Duyệt từng ID
-    favoriteIds.forEach(id => {
+    favoriteIds.forEach((id, index) => {
+
+    setTimeout(() => {
+
         fetch(`https://api.jikan.moe/v4/anime/${id}`)
-        .then(response => response.json())
-        .then(result => {
-            const anime = result.data;    
-            const card = createAnimeCard(anime);
-            animeFav.appendChild(card);
-        });
-    });
+            .then(response => {
+
+                if (!response.ok) {
+                    throw new Error(
+                        `API Error: ${response.status}`
+                    );
+                }
+
+                return response.json();
+            })
+            .then(result => {
+
+                if (!result.data) {
+                    return;
+                }
+
+                const anime = result.data;
+
+                const card =
+                    createAnimeCard(anime);
+
+                animeFav.appendChild(card);
+            })
+            .catch(error => {
+
+                console.error(
+                    `Lỗi khi tải anime ${id}:`,
+                    error
+                );
+
+            });
+
+    }, index * 1000);
+
 });
+    });
 
 const closeFavBtn = document.querySelector("#close-favorite");
 closeFavBtn.addEventListener("click", function() {

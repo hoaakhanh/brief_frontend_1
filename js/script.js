@@ -277,9 +277,12 @@ function renderFeaturedAnime(anime) {
 /* API */
 const animeList = document.querySelector("#anime-list");
 
+let allAnime = [];
+
 fetch("https://api.jikan.moe/v4/top/anime")
     .then(response => response.json())
     .then(result => {
+        allAnime = result.data;
         // Feature
         const featuredAnime = result.data[0];
 
@@ -423,3 +426,38 @@ const closeDetailBtn = document.querySelector("#close-detail");
 closeDetailBtn.addEventListener("click", function(){
     detailModal.classList.remove("active");
 }); 
+
+//Genres 
+const genreButtons = document.querySelectorAll(".genre-filter button");
+const genreAnimeList = document.querySelector("#genre-anime-list");
+
+genreButtons.forEach(button => 
+    button.addEventListener("click", function() {
+        //xoa "active" nut cu
+        genreButtons.forEach(button => {
+            button.classList.remove("active");
+        });
+        //add "active" nut vua click
+        button.classList.add("active");
+
+        const genreName = button.textContent;
+
+        const filteredAnime = allAnime.filter(anime => {
+            return anime.genres.some(genre => {
+                return genre.name === genreName;
+        });
+    });
+        genreAnimeList.innerHTML = "";
+        if (genreName === "All") {
+            allAnime.forEach(anime => {
+                const card = createAnimeCard(anime);
+                genreAnimeList.appendChild(card);
+            });
+        } else {
+            filteredAnime.forEach(anime => {
+                const card = createAnimeCard(anime);
+                genreAnimeList.appendChild(card);
+            });
+        }
+    })
+)

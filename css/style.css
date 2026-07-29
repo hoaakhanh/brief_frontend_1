@@ -520,10 +520,15 @@ footer h2 {
     display: flex;
     justify-content: space-between;
     gap: 40px;
+    
 }
 
 .footer-section {
     flex: 1; /* chiem 1/3 chieu rong cua footer - vi co 3 .footer-section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 
 }
 

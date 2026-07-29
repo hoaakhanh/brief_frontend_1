@@ -211,7 +211,7 @@ const featuredDescription = document.querySelector("#featured-description");
 const featuredDetailBtn = document.querySelector("#featured-detail-btn");
 const featuredImage = document.querySelector(".featured-image");
     
-function renderFeaturedAinme(anime) {
+function renderFeaturedAnime(anime) {
     featuredImage.src = anime.images.jpg.large_image_url;
 
     featuredImage.alt = anime.title;
@@ -220,8 +220,60 @@ function renderFeaturedAinme(anime) {
 
     featuredDescription.textContent = anime.synopsis || "No synopsis available.";
 
-}
+    const genres = anime.genres.map(genre => genre.name);
 
+    //Detail Button
+    featuredDetailBtn.addEventListener("click", function(){
+        detailModal.classList.add("active");
+
+        detailInfo.innerHTML = `
+        <h2>${anime.title}</h2>
+
+        <img
+            src="${anime.images.jpg.image_url}"
+            alt="${anime.title}"
+        >
+
+        <div class="detail-meta">
+
+            <p class="detail-score">
+                ⭐ ${anime.score || "N/A"}
+            </p>
+
+            <p>
+                Episodes: ${anime.episodes || "N/A"}
+            </p>
+
+            <p>
+                Status: ${anime.status || "N/A"}
+            </p>
+
+            <p>
+                Genres:
+                ${genres.join(" • ") || "N/A"}
+            </p>
+
+            <p>
+                Type: ${anime.type || "N/A"}
+            </p>
+
+            <p>
+                Aired: ${anime.aired?.string || "N/A"}
+            </p>
+        </div>
+
+        <div class="detail-synopsis">
+
+            <h3>Synopsis</h3>
+
+            <p>
+                ${anime.synopsis || "No synopsis available."}
+            </p>
+
+        </div>
+    `;
+    })
+}
 /* API */
 const animeList = document.querySelector("#anime-list");
 
@@ -231,7 +283,7 @@ fetch("https://api.jikan.moe/v4/top/anime")
         // Feature
         const featuredAnime = result.data[0];
 
-        renderFeaturedAinme(featuredAnime);
+        renderFeaturedAnime(featuredAnime);
 
         // Top-Rated
         result.data.forEach(anime => { /* lay tu kho ttin */
@@ -370,4 +422,4 @@ const detailInfo = document.querySelector("#detail-info");
 const closeDetailBtn = document.querySelector("#close-detail");
 closeDetailBtn.addEventListener("click", function(){
     detailModal.classList.remove("active");
-});
+}); 

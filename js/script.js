@@ -202,7 +202,17 @@ function createAnimeCard(anime) {
     favoriteButton.textContent = "❤️";
 
     // Kiểm tra anime đã được yêu thích chưa
-    const favoriteIds = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    // User đang đăng nhập
+    const currentUser = JSON.parse(
+        localStorage.getItem("currentUser")
+    );
+
+    // Lấy Favorites của currentUser
+    const favoriteIds = currentUser
+        ? currentUser.favorites
+        : [];
+
 
     // Nếu đã yêu thích → hiển thị 💖
     if (favoriteIds.includes(anime.mal_id)) {
@@ -210,25 +220,65 @@ function createAnimeCard(anime) {
     }
 
     favoriteButton.addEventListener("click", function () {
-        const favoriteIds = JSON.parse(localStorage.getItem("favorites")) || [];
+        // Lấy currentUser MỚI NHẤT khi click
+        const currentUser = JSON.parse(
+            localStorage.getItem("currentUser")
+        );
+        
+        if (!currentUser) {
+            alert("Please login to use Favorites");
+            return;
+        }
+
+        const favoriteIds = currentUser.favorites;
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        
+        const userIndex = users.findIndex(user => {
+            return user.email === currentUser.email;
+        });
+
+        if (userIndex === -1) {
+            console.log("Không tìm thấy user");
+            return;
+        }
 
         if (favoriteButton.textContent === "❤️") {
             favoriteButton.textContent = "💖";
 
             favoriteIds.push(anime.mal_id);
+
+            users[userIndex].favorites = favoriteIds;
+
             localStorage.setItem(
-                "favorites", JSON.stringify(favoriteIds)
+                "users", JSON.stringify(users)
             );
+
         } else {
             favoriteButton.textContent = "❤️";
             const index = favoriteIds.indexOf(anime.mal_id);
 
             favoriteIds.splice(index, 1);
 
+            users[userIndex].favorites = favoriteIds;
+
             localStorage.setItem(
-                "favorites", JSON.stringify(favoriteIds)
+                "users",
+                JSON.stringify(users)
             );
+
         }
+
+        // Lưu toàn bộ users
+        localStorage.setItem(
+            "users",
+            JSON.stringify(users)
+        );
+
+        // Cập nhật currentUser
+        localStorage.setItem(
+            "currentUser",
+            JSON.stringify(users[userIndex])
+        );
     });
 
     // Dua tat ca vao card 
@@ -388,14 +438,25 @@ const favoriteDiv = document.querySelector(".fav-result-div");
 const animeFav = document.querySelector("#favorite-list")
 
 favoriteLink.addEventListener("click", function() {
+    const currentUser = JSON.parse(
+        localStorage.getItem("currentUser")
+    );
+
+    // Kiem tra xem dang nhap chx
+    if (!currentUser) {
+        alert("Please login to view Favorites");
+        return;
+    }
+
+    // Lay danh sach ID Fav
+    const favoriteIds = currentUser.favorites;
+
     // Hiện khu vực Favorites
     favoriteDiv.classList.add("active");
 
     // Xoa su kien cu
     animeFav.innerHTML = "";
 
-    // Lấy danh sách ID Favorites
-    const favoriteIds = JSON.parse(localStorage.getItem("favorites")) || [];
 
     // Nếu chưa có Favorites
     if (favoriteIds.length === 0) {
@@ -581,5 +642,3 @@ registerForm.addEventListener("submit", function(event) {
         loginModal.classList.remove("hidden");
     }    
 });
-
-

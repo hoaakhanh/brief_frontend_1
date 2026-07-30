@@ -129,7 +129,7 @@ nav a:hover {
 }
 
 .welcome-text {
-    color: rgb(255, 123, 0);
+    color: yellow;
     font-weight:bold;
 }
 
@@ -302,7 +302,7 @@ nav a:hover {
 
     display: grid;
 
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 30px;
 
@@ -439,7 +439,7 @@ nav a:hover {
 
 #genre-anime-list {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     margin: 60px;
     gap: 30px;
 }
@@ -511,22 +511,34 @@ footer h2 {
     font-size: 14px;
 }
 
-/* Login Form */
-.hidden {
+/* Login-Register Form */
+.login-modal,
+.register-modal {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, .7);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-modal.hidden,
+.register-modal.hidden {
     display: none;
 }
 
-.login-box h2 {
+.login-box h2,
+.register-form h2 {
     font-size: 27px;
     text-align:center;
     margin-bottom:20px;
 }
 
-.login-modal.hidden{
-    display:none;
-}
 
-.login-modal{
+.login-modal,
+.register-modal {
     position:fixed; /* co dinh box */
     inset:0; /* modal phu kin toan bo man hinh */
 
@@ -537,41 +549,78 @@ footer h2 {
     align-items:center;
 }
 
-.login-box{ /* hop dang nhap */
+.login-box,
+.register-form{ /* hop dang nhap */
+    position: relative;
+
     background:#1f1f1f;
     padding:30px;
     border-radius:12px;
-    width:350px; /* chieu rong hop */
+    width:400px; /* chieu rong hop */
+
 }
 
-.login-box input{ /* khung input */
+.login-box input,
+.register-form input { /* khung input */
     width:100%;
     padding:10px;
     margin-bottom:15px; /* khoang cach cac input */
 }
 
-.close-btn {
-    display: block;
-    width: 120px;
-    margin: 10px auto 0;
+.login-box p,
+.register-form p {
+    display: flex;
+    gap: 40px;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 
-.email-error,
-.password-error{
+.login-box p a,
+.register-form p a {
+    color: yellow;
+}
+
+.close-btn,
+.register-close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+.login-box.email-error,
+.login-box.password-error,
+.register-form.username-error,
+.register-form.email-error,
+.register-form.password-error{
     color:red;
     font-size:14px;
     margin-bottom:10px;
 }
 
-.login-box button {
+.login-form button,
+.register-form button {
     background-color: yellow;
     border-radius: 15px;
-    width: 60px;
+    width: 70px;
+
 }
 
-.login-box .close-btn {
-    width: 85px;
-    font-size: 17px;
+.login-box .close-btn,
+.register-form .register-close-btn {
+    width: 40px;
+    font-size: 20px;
+    background-color: yellow;
+    border-radius: 10px;
+
+}
+
+.login-box .close-btn:hover {
+    background-color: orange;
+}
+
+.register-form .register-close-btn:hover {
+    background-color: orange;
 }
 
 /* Search Div */
@@ -588,7 +637,16 @@ footer h2 {
     width: 100%;
 }
 .search-result-div.active h2{
-    font-size: 30px;
+    font-size: 35px;
+    color: yellow;
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+#search-result {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 }
 
 #close-search {
@@ -638,7 +696,7 @@ footer h2 {
 
 #favorite-list {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 30px;
 
     width: 100%;

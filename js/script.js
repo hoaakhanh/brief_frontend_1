@@ -35,6 +35,17 @@ const passwordError = document.querySelector(".password-error");
 const welcomeText = document.querySelector(".welcome-text");
 const logoutBtn = document.querySelector(".logout-btn");
 
+const currentUser = JSON.parse(
+    localStorage.getItem("currentUser")
+);
+if (currentUser) {
+    loginBtn.classList.add("hidden");
+    logoutBtn.classList.remove("hidden");
+
+    welcomeText.classList.remove("hidden");
+    welcomeText.textContent = `Welcome ${currentUser.username}`;
+}
+
 loginForm.addEventListener("submit", function (event) {
 
     event.preventDefault(); /* duyet xem co hop le khong */
@@ -43,7 +54,7 @@ loginForm.addEventListener("submit", function (event) {
         emailError.textContent = "Please enter your email";
     }
     else if (!emailInput.value.includes("@gmail.com")) {
-        emailError.textContent = "Invalid email";
+        emailError.textContent = "Email not available";
     }
     else if (passwordInput.value === "") {
         passwordError.textContent = "Please enter your password";
@@ -53,18 +64,45 @@ loginForm.addEventListener("submit", function (event) {
 
     }
     else {
-    emailInput.value = ""; /* tra ve trong khi gap loi */
-    passwordInput.value = ""; /* tra ve trong khi gap loi */
+        const user = users.find(user => {
+            return user.email === emailInput.value;
+        });
 
-    loginModal.classList.add("hidden"); /* dong o dang nhap */
+        if (!user) {
+            emailError.textContent = "Email not available";
+        }
+        else if (user.password !== passwordInput.value) {
+            passwordError.textContent = "Incorrect password";
+        }
+        else {
+            localStorage.setItem("currentUser", JSON.stringify(user));
 
-    loginBtn.classList.add("hidden"); /* tat hien thi nut login */
+            emailInput.value = "";
+            passwordInput.value = "";
 
-    logoutBtn.classList.remove("hidden");
+            loginModal.classList.add("hidden");
 
-    welcomeText.classList.remove("hidden"); /* hien chu welcome! */
-}
+            loginBtn.classList.add("hidden");
 
+            logoutBtn.classList.remove("hidden");
+
+            welcomeText.classList.remove("hidden");
+
+            welcomeText.textContent = `Welcome ${user.username}`;
+            }
+
+        }
+});
+
+// Logout
+logoutBtn.addEventListener("click", function() {
+    localStorage.removeItem("currentUser");
+
+    logoutBtn.classList.add("hidden");
+
+    loginBtn.classList.remove("hidden");
+
+    welcomeText.classList.add("hidden");
 });
 
 /* Menu cho Mobile */ 
@@ -290,11 +328,12 @@ fetch("https://api.jikan.moe/v4/top/anime")
 
         // Top-Rated
         result.data.forEach(anime => { /* lay tu kho ttin */
-        
-            const card = createAnimeCard(anime);
+            if (anime.score >= 9.0) {
+                const card = createAnimeCard(anime);
 
-            // Dua cac card vao list
-            animeList.appendChild(card); /* dua card vao movie-grid */
+                // Dua cac card vao list
+                animeList.appendChild(card); /* dua card vao movie-grid */
+                }
             
         });
     });
@@ -461,3 +500,86 @@ genreButtons.forEach(button =>
         }
     })
 )
+
+// Login - Register
+
+const registerModal = document.querySelector(".register-modal");
+const showRegisterBtn = document.querySelector("#show-register-btn");
+const showLoginBtn = document.querySelector("#show-login-btn");
+
+showRegisterBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+
+    registerModal.classList.remove("hidden");
+    loginModal.classList.add("hidden");
+})
+
+showLoginBtn.addEventListener("click", function(event) {
+
+    event.preventDefault();
+
+    registerModal.classList.add("hidden");
+    loginModal.classList.remove("hidden");
+
+});
+
+const registerCloseBtn = document.querySelector(".register-close-btn");
+registerCloseBtn.addEventListener("click", function() {
+    registerModal.classList.add("hidden");
+})
+
+const registerForm = document.querySelector(".register-form");
+
+const registerUsername = document.querySelector("#register-username");
+const registerEmail = document.querySelector("#register-email");
+const registerPassword = document.querySelector("#register-password");
+
+const registerUsernameError = document.querySelector(".username-error");
+const registerEmailError = document.querySelector(".email-error");
+const registerPasswordError = document.querySelector(".password-error");
+
+let users = JSON.parse(localStorage.getItem("users")) || []; 
+
+registerForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (registerUsername.value === "") {
+        registerUsernameError.textContent = "Please enter your username";
+    }
+    else if (registerEmail.value === "") {
+        registerEmailError.textContent = "Please enter your email";
+    }
+    else if (!registerEmail.value.includes("@gmail.com")) {
+        registerEmailError.textContent = "Invalid email";
+    }
+    else if (registerPassword.value === "") {
+        registerPasswordError.textContent = "Please enter your password";
+    }
+    else if (registerPassword.value.length < 8) {
+        registerPasswordError.textContent = "Password must be at least 8 characters";
+
+    }
+    else {
+        // Tao User
+        const newUser = {
+            username: registerUsername.value,
+            email: registerEmail.value,
+            password: registerPassword.value,
+            favorites: [],
+        }
+
+        users.push(newUser);
+
+        localStorage.setItem("users", JSON.stringify(users));
+
+        registerUsername.value = "";
+        registerEmail.value = ""; /* tra ve trong khi gap loi */
+        registerPassword.value = ""; /* tra ve trong khi gap loi */
+
+        registerModal.classList.add("hidden"); /* dong o dang nhap */
+
+        loginModal.classList.remove("hidden");
+    }    
+});
+
+

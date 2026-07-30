@@ -29,8 +29,8 @@
                     <li><a href="#fav" id="favorites-link">Favorites</a></li>
                     <li><input type="search" class="search-input" placeholder="Search anime..."></li>
                     <li><button id="search-btn">Search</button></li>
-                    <li><a class="login-btn" href="#">Login</a></li>
-                    <li><a class="logout-btn hidden" href="#">Logout</a></li>
+                    <li><a type="button" class="login-btn" href="#">Login</a></li>
+                    <li><a type="button" class="logout-btn hidden" href="#">Logout</a></li>
                     <li class="welcome-text hidden">
                         Welcome!
                     </li>
@@ -186,15 +186,68 @@
                         Login
                     </button>
 
-                </form>
+                    <p>
+                        Chưa có tài khoản?
+                        
+                        <a href="" id="show-register-btn">Register</a>
+                    </p>
 
-                <button type="button" class="close-btn">
-                    Close
-                </button>
+                    <button type="button" class="close-btn">
+                        ×
+                    </button>
+
+                </form>
 
             </div>
 
         </div>
+
+        <div class="register-modal hidden">
+            <form class="register-form" novalidate>
+                <h2>Register</h2>
+                <input 
+                    type="text"
+                    id="register-username"
+                    placeholder="Username"
+                >
+
+                <p class="username-error"></p>
+
+                <input
+                    type="email"
+                    id="register-email"
+                    placeholder="Email"
+                >
+
+                <p class="register-email-error"></p>
+
+                <input
+                    type="password"
+                    id="register-password"
+                    placeholder="Password"
+                >
+
+                <p class="register-password-error"></p>
+
+                <button type="submit">
+                    Register
+                </button>
+
+                <p>
+                    Đã có tài khoản?
+                    <a href="" type="button" id="show-login-btn">
+                        Login
+                    </a>
+                </p>
+
+                <button type="button" class="register-close-btn">
+                    ×
+                </button>
+
+            </form>
+
+        </div>
+
 
         <div class="detail-modal">
             <div class="detail-content">

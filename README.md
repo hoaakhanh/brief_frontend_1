@@ -802,12 +802,9 @@ AnimeVerse là project thực hành giúp xây dựng nền tảng cho việc h�
 
 Một số tính năng có thể phát triển trong tương lai:
 
-* [ ] Anime Detail Page hoàn chỉnh
 * [ ] Watch Anime
 * [ ] Search Suggestions
 * [ ] Pagination
-* [ ] Filter theo Genre
-* [ ] Sort theo Rating
 * [ ] User Profile
 * [ ] Edit Profile
 * [ ] Password Change
@@ -815,10 +812,7 @@ Một số tính năng có thể phát triển trong tương lai:
 * [ ] Backend Authentication
 * [ ] Database
 * [ ] Cloud-based Favorites
-* [ ] Responsive Mobile Menu
 * [ ] Loading Animation
-* [ ] Error Handling tốt hơn
-* [ ] API Rate Limit Handling
 
 ---
 

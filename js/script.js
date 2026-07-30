@@ -300,11 +300,11 @@ const featuredDetailBtn = document.querySelector("#featured-detail-btn");
 const featuredImage = document.querySelector(".featured-image");
     
 function renderFeaturedAnime(anime) {
+    featuredTitle.textContent = anime.title;
+    
     featuredImage.src = anime.images.jpg.large_image_url;
 
     featuredImage.alt = anime.title;
-
-    featuredTitle.textContent = anime.title;
 
     featuredDescription.textContent = anime.synopsis || "No synopsis available.";
 

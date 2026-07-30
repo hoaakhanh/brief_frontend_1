@@ -1,114 +1,562 @@
-/* Responsive cho Tablet ngang / Laptop nhỏ */
-@media (max-width:992px){
+/* ========================================
+   TABLET / LAPTOP NHỎ
+   <= 992px
+======================================== */
 
-    .anime-grid,
-    .movie-grid{
-        grid-template-columns:repeat(2,1fr);
-        
+@media (max-width: 992px) {
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    .menu-btn {
+        display: block;
     }
 
-    .hero h2{
-        font-size:50px;
-    }
-
-
-    .hero,
-    .top-rated,
-    .genres,
-    footer{
-        padding:50px 30px;
-    }
-
-    nav ul{
-        gap:15px;
-    }
-
-}
-
-/* Responsive cho Mobile */
-@media (max-width:768px){
-    .menu-btn{
-        display:block;
-    }
-
-    .nav-menu{
-        display:none;
-    }
-
-    .nav-menu.active{
-        display:flex;
-        flex-direction:column;
-    }
-
-    nav{
-        gap:20px;
-
+    nav {
         position: relative;
+        gap: 20px;
     }
 
     .nav-menu {
-    display: none;
+        display: none;
 
-    position: absolute; /* lay nav lam moc */
-    top: 95%;
-    right: 0;
+        position: fixed;
+        top: 70px;
+        right: 20px;
 
-    width: 220px;
+        width: 220px;
 
-    flex-direction: column;
+        flex-direction: column;
 
-    background: rgba(18,18,18,0.9);;
+        padding: 10px;
 
-    border-radius: 10px;
+        background: rgba(18, 18, 18, 0.95);
 
-    position: fixed;
+        border-radius: 10px;
 
-    padding: 10px;
-
-
-}
-
-    nav ul{
-        flex-wrap:wrap; /* xuong dong khi het cho */
-        justify-content:center;
+        z-index: 1000;
     }
 
-    .hero{
-        padding:40px 20px;
-        text-align:center;
-        height: auto;
+    .nav-menu.active {
+        display: flex;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
         min-height: 90vh;
+        height: auto;
+
+        padding: 50px 30px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 10px;
+
+        margin-bottom: 40px;
+
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+    }
+
+    .hero h2 {
+        font-size: 50px;
     }
 
 
-    .hero-buttons{
-        display:flex;
-        flex-direction:column;
-        gap:15px;
+    /* =========================
+       HERO BUTTONS
+    ========================= */
+
+    .hero-buttons {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        gap: 15px;
+
+        flex-wrap: wrap;
     }
 
-    .featured-card{
-    flex-direction:column;
-    text-align:center;
+
+    /* =========================
+       FEATURED CARD
+    ========================= */
+
+    .featured-card {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        width: 90%;
+        max-width: 700px;
+
+        margin: 20px auto;
+
+        padding: 20px;
+
+        text-align: center;
+
+        box-sizing: border-box;
+    }
+
+    .featured-card img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+
+        margin: 0 auto;
+    }
+
+    .featured-content {
+        width: 100%;
+
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 20px;
+
+        font-size: 20px;
+
+        box-sizing: border-box;
+    }
+
+    .featured-content h3 {
+        font-size: 32px;
+    }
+
+
+    /* =========================
+       ANIME GRID
+       TOP RATED / GENRES
+    ========================= */
+
+    .anime-grid,
+    .movie-grid,
+    #genre-anime-list {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 20px;
+    }
+
+
+    /* =========================
+       GENRES
+    ========================= */
+
+    .genres {
+        padding: 50px 30px;
+    }
+
+    .genres h2 {
+        font-size: 36px;
+    }
+
+    .genre-filter {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 10px;
+
+        margin-bottom: 30px;
+    }
+
+    .genre-filter button {
+        padding: 10px 18px;
+
+        font-size: 16px;
+    }
+
+
+    /* =========================
+       LOGIN MODAL
+    ========================= */
+
+    .login-box {
+        width: 100%;
+        max-width: 450px;
+
+        padding: 30px;
+
+        box-sizing: border-box;
+    }
+
+
+    /* =========================
+       REGISTER MODAL
+    ========================= */
+
+    .register-form {
+        width: 100%;
+        max-width: 450px;
+
+        padding: 30px;
+
+        box-sizing: border-box;
+    }
+
+
+    /* =========================
+       DETAIL MODAL
+    ========================= */
+
+    .detail-content {
+        width: 80%;
+        max-height: 85vh;
+
+        padding: 30px;
+
+        overflow-y: auto;
+
+        box-sizing: border-box;
+    }
+
+
+    /* =========================
+       SECTION PADDING
+    ========================= */
+
+    .top-rated,
+    footer {
+        padding: 50px 30px;
+    }
 
 }
-    .anime-grid,
-    .movie-grid{
-        grid-template-columns:1fr;
-        max-width:100%;
+
+
+/* ========================================
+   MOBILE
+   <= 768px
+======================================== */
+
+@media (max-width: 768px) {
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    .menu-btn {
+        display: block;
+    }
+
+    nav {
+        position: relative;
+
+        gap: 20px;
+    }
+
+    .nav-menu {
+        display: none;
+
+        position: fixed;
+
+        top: 70px;
+        right: 15px;
+
+        width: 220px;
+
+        flex-direction: column;
+
+        padding: 10px;
+
+        background: rgba(18, 18, 18, 0.95);
+
+        border-radius: 10px;
+
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        height: auto;
+        min-height: auto;
+
+        padding: 40px 20px;
+
+        text-align: center;
+
+        margin-bottom: 30px;
     }
 
     .hero h2 {
         font-size: 40px;
     }
 
-    .footer-content{
-        flex-direction:column;
-        gap:30px;
-        text-align:center;
+
+    /* =========================
+       HERO BUTTONS
+    ========================= */
+
+    .hero-buttons {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 15px;
+
+        width: 100%;
+    }
+
+    .hero-buttons a,
+    .hero-buttons button {
+        width: 100%;
+        max-width: 300px;
     }
 
 
+    /* =========================
+       FEATURED CARD
+    ========================= */
+
+    .featured-card {
+        width: 90%;
+
+        padding: 15px;
+
+        margin: 20px auto;
+
+        text-align: center;
+
+        box-sizing: border-box;
+    }
+
+    .featured-card img {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+
+        margin: 0 auto;
+    }
+
+    .featured-content {
+        width: 100%;
+
+        padding: 10px;
+
+        font-size: 18px;
+
+        box-sizing: border-box;
+    }
+
+    .featured-content h3 {
+        font-size: 28px;
+    }
+
+
+    /* =========================
+       ANIME GRID
+       TOP RATED
+       GENRES
+    ========================= */
+
+    .anime-grid,
+    .movie-grid,
+    #genre-anime-list {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        max-width: 100%;
+    }
+
+    .movie-card {
+        width: 100%;
+
+        max-width: 350px;
+
+        margin: 0 auto;
+    }
+
+
+    /* =========================
+       GENRES
+    ========================= */
+
+    .genres {
+        padding: 40px 20px;
+    }
+
+    .genres h2 {
+        font-size: 32px;
+
+        text-align: center;
+    }
+
+    .genre-filter {
+        display: flex;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 10px;
+
+        margin-bottom: 25px;
+    }
+
+    .genre-filter button {
+        padding: 8px 15px;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       LOGIN MODAL
+    ========================= */
+
+    .login-modal {
+        padding: 15px;
+
+        box-sizing: border-box;
+    }
+
+    .login-box {
+        width: 100%;
+
+        max-width: 400px;
+
+        padding: 25px 20px;
+
+        border-radius: 10px;
+
+        box-sizing: border-box;
+    }
+
+    .login-box h2 {
+        font-size: 28px;
+
+        text-align: center;
+    }
+
+    .login-form input {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        font-size: 16px;
+    }
+
+    .login-form button {
+        width: 100%;
+    }
+
+    .login-form p {
+        text-align: center;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       REGISTER MODAL
+    ========================= */
+
+    .register-modal {
+        padding: 15px;
+
+        box-sizing: border-box;
+    }
+
+    .register-form {
+        width: 100%;
+
+        max-width: 400px;
+
+        padding: 25px 20px;
+
+        border-radius: 10px;
+
+        box-sizing: border-box;
+    }
+
+    .register-form h2 {
+        font-size: 28px;
+
+        text-align: center;
+    }
+
+    .register-form input {
+        width: 100%;
+
+        box-sizing: border-box;
+
+        font-size: 16px;
+    }
+
+    .register-form button {
+        width: 100%;
+    }
+
+    .register-form p {
+        text-align: center;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       DETAIL MODAL
+    ========================= */
+
+    .detail-content {
+        width: 90%;
+
+        max-height: 85vh;
+
+        padding: 20px;
+
+        overflow-y: auto;
+
+        box-sizing: border-box;
+    }
+
+    #detail-info {
+        font-size: 14px;
+    }
+
+    #close-detail {
+        font-size: 24px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer-content {
+        flex-direction: column;
+
+        gap: 30px;
+
+        text-align: center;
+    }
 
 }
-

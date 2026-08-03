@@ -400,6 +400,8 @@ const animeSearch = document.querySelector("#search-result")
 searchBtn.addEventListener("click", function() {
     const keyword = searchInput.value.trim();
 
+    searchInput.value = ""; /* xoa tu khoa tim kiem sau khi bam nut search */
+
     if (!keyword) {
         return;
     }

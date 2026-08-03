@@ -22,10 +22,13 @@
         display: none;
 
         position: fixed;
+
+
         top: 70px;
         right: 20px;
 
         width: 220px;
+        height: 350px;
 
         flex-direction: column;
 
@@ -35,7 +38,6 @@
 
         border-radius: 10px;
 
-        z-index: 1000;
     }
 
     .nav-menu.active {
@@ -92,9 +94,7 @@
     ========================= */
 
     .featured-card {
-        display: grid;
-
-        grid-template-columns: 1fr;
+        position: relative;
 
         width: 90%;
         max-width: 700px;
@@ -106,14 +106,19 @@
         text-align: center;
 
         box-sizing: border-box;
+
+        display: flex;
+        
+        flex-direction: column;
+        
     }
 
-    .featured-card img {
+    .featured-image {
         width: 100%;
         max-width: 320px;
         height: auto;
 
-        margin: 0 auto;
+        margin-top: 55px;
     }
 
     .featured-content {
@@ -121,20 +126,27 @@
 
         padding: 20px;
 
-        display: flex;
-        flex-direction: column;
-
         align-items: center;
+
+        text-align: center;
 
         gap: 20px;
 
-        font-size: 20px;
+        font-size: 19px;
 
         box-sizing: border-box;
     }
 
     .featured-content h3 {
         font-size: 32px;
+    }
+
+    #featured-title {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        text-align: center;
     }
 
 
@@ -151,16 +163,14 @@
         grid-template-columns: repeat(2, 1fr);
 
         gap: 20px;
+
+        text-align: center;
     }
 
 
     /* =========================
        GENRES
     ========================= */
-
-    .genres {
-        padding: 50px 30px;
-    }
 
     .genres h2 {
         font-size: 36px;
@@ -184,7 +194,25 @@
         font-size: 16px;
     }
 
+    /* =========================
+       FAVORITE MODAL
+    ========================= */
+    #favorite-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        flex-wrap: wrap;
+        margin: 30px;
+    }
 
+    .fav-result-div.active {
+        inset: 0;
+
+        overflow-y: auto;
+
+        max-height: 800px;
+        margin: 0 auto;
+    }
     /* =========================
        LOGIN MODAL
     ========================= */
@@ -238,6 +266,20 @@
         padding: 50px 30px;
     }
 
+    /* =========================
+       SEARCH MODAL
+    ========================= */
+    #search-result {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 100%;
+        flex-wrap: wrap;
+        margin: 30px;
+        padding: 0 100px;
+        gap: 100px;
+        
+    }
+
 }
 
 
@@ -271,6 +313,7 @@
         right: 15px;
 
         width: 220px;
+        height: 350px;
 
         flex-direction: column;
 
@@ -336,6 +379,8 @@
     ========================= */
 
     .featured-card {
+        flex-direction: column;
+
         width: 90%;
 
         padding: 15px;
@@ -357,12 +402,16 @@
 
     .featured-content {
         width: 100%;
+        max-width: 90%;
 
-        padding: 10px;
+        margin: 0 auto;
 
-        font-size: 18px;
+        display: flex;
+        flex-direction: column;
 
-        box-sizing: border-box;
+        align-items: center;
+
+        gap: 20px;
     }
 
     .featured-content h3 {
@@ -560,3 +609,7 @@
     }
 
 }
+
+
+
+

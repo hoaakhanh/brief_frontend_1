@@ -91,30 +91,31 @@
        FEATURED CARD
     ========================= */
 
-    .featured-card {
-        display: grid;
-
-        grid-template-columns: 1fr;
-
-        width: 90%;
-        max-width: 700px;
-
-        margin: 20px auto;
-
-        padding: 20px;
-
-        text-align: center;
-
-        box-sizing: border-box;
-    }
-
     .featured-card img {
         width: 100%;
         max-width: 320px;
         height: auto;
 
         margin: 0 auto;
+
+        display: flex;
+        flex-direction: column;
     }
+
+        .featured-card {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "image"
+            "title"
+            "description"
+            "button";
+
+        width: 90%;
+        max-width: 700px;
+        margin: 20px auto;
+
+    }
+
 
     .featured-content {
         width: 100%;
@@ -138,6 +139,8 @@
     }
 
 
+
+
     /* =========================
        ANIME GRID
        TOP RATED / GENRES
@@ -157,10 +160,6 @@
     /* =========================
        GENRES
     ========================= */
-
-    .genres {
-        padding: 50px 30px;
-    }
 
     .genres h2 {
         font-size: 36px;
@@ -238,6 +237,33 @@
         padding: 50px 30px;
     }
 
+    /* =========================
+       SEARCH MODAL
+    ========================= */
+    #search-result {
+        width: 90%;
+        max-width: 700px;
+        margin: 20px auto;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        margin: 0px 100px;
+    }
+
+    /* =========================
+       FAV MODAL
+    ========================= */
+    #favorite-list {
+        width: 90%;
+        max-width: 700px;
+        margin: 20px auto;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        margin: 0px 100px;
+    }
 }
 
 

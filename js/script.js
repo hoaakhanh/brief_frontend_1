@@ -295,7 +295,7 @@ function createAnimeCard(anime) {
 
 // Feature function
 const featuredTitle = document.querySelector("#featured-title");
-const featuredDescription = document.querySelector("#featured-description");
+
 const featuredDetailBtn = document.querySelector("#featured-detail-btn");
 const featuredImage = document.querySelector(".featured-image");
     
@@ -306,7 +306,7 @@ function renderFeaturedAnime(anime) {
 
     featuredImage.alt = anime.title;
 
-    featuredDescription.textContent = anime.synopsis || "No synopsis available.";
+
 
     const genres = anime.genres.map(genre => genre.name);
 

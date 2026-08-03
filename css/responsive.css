@@ -415,8 +415,6 @@
     .movie-card {
         width: 100%;
 
-        max-width: 350px;
-
         margin: 0 auto;
     }
 
@@ -583,6 +581,30 @@
         gap: 30px;
 
         text-align: center;
+    }
+
+    /* =========================
+       SEARCH MODAL
+    ========================= */
+    #search-result {
+        width: 90%;
+        max-width: 700px;
+        margin: 20px auto;
+
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    /* =========================
+       FAV MODAL
+    ========================= */
+    #favorite-list {
+        width: 90%;
+        max-width: 700px;
+        margin: 20px auto;
+
+        display: grid;
+        grid-template-columns: 1fr;
     }
 
 }

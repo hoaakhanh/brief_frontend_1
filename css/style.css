@@ -564,7 +564,7 @@ footer h2 {
 .register-form input { /* khung input */
     width:100%;
     padding:10px;
-    margin-bottom:15px; /* khoang cach cac input */
+
 }
 
 .login-box p,
@@ -588,14 +588,17 @@ footer h2 {
 
 }
 
-.login-box.email-error,
-.login-box.password-error,
-.register-form.username-error,
-.register-form.email-error,
-.register-form.password-error{
-    color:red;
-    font-size:14px;
-    margin-bottom:10px;
+
+.email-error,
+.password-error,
+.username-error,
+.register-email-error,
+.register-password-error {
+    color: red;
+
+    font-size: 14px;
+
+    margin-bottom: 10px;
 }
 
 .login-form button,
@@ -897,3 +900,4 @@ footer h2 {
 .detail-meta p:last-child {
     margin-bottom: 0;
 }
+

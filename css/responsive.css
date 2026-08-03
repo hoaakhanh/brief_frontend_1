@@ -395,6 +395,10 @@
         font-size: 28px;
     }
 
+    #featured-description {
+        display: none;
+    }
+
 
     /* =========================
        ANIME GRID

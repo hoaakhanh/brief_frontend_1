@@ -54,10 +54,24 @@ nav {
 
     border-radius: 20px; /* bo goc */
 
+  
+
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+
+    background: black;
+    color: white;
+
+    padding: 20px;
 }
 
 .nav-menu.active {
     display: flex;
+
 }
 
 nav ul {

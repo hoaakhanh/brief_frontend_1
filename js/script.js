@@ -1,15 +1,3 @@
-/* Hieu ung cho All top favorite button */
-const favoriteButtons = document.querySelectorAll(".favorite-btn"); /* chon tat ca cac button co class favorite-btn */
-favoriteButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-        if (button.textContent === "❤") {
-            button.textContent = "💖";
-        }
-        else {
-            button.textContent = "❤";
-        }
-    });
-});
 
 /* Login form validation */
 const loginBtn = document.querySelector(".login-btn");
@@ -124,7 +112,7 @@ function createAnimeCard(anime) {
 
     // Image
     const image = document.createElement("img");
-    image.src = anime.images.jpg.image_url;
+    image.src = anime.images.jpg.large_image_url;
     image.alt = anime.title_english || anime.title;
 
     //Title
@@ -199,7 +187,7 @@ function createAnimeCard(anime) {
     // Favorite Button
     const favoriteButton = document.createElement("button");
     favoriteButton.classList.add("favorite-btn");
-    favoriteButton.textContent = "❤️";
+    favoriteButton.textContent = "🤍";
 
     // Kiểm tra anime đã được yêu thích chưa
 
@@ -242,7 +230,7 @@ function createAnimeCard(anime) {
             return;
         }
 
-        if (favoriteButton.textContent === "❤️") {
+        if (favoriteButton.textContent === "🤍") {
             favoriteButton.textContent = "💖";
 
             favoriteIds.push(anime.mal_id);
@@ -254,7 +242,7 @@ function createAnimeCard(anime) {
             );
 
         } else {
-            favoriteButton.textContent = "❤️";
+            favoriteButton.textContent = "🤍";
             const index = favoriteIds.indexOf(anime.mal_id);
 
             favoriteIds.splice(index, 1);
@@ -318,7 +306,7 @@ function renderFeaturedAnime(anime) {
         <h2>${anime.title}</h2>
 
         <img
-            src="${anime.images.jpg.image_url}"
+            src="${anime.images.jpg.large_image_url}"
             alt="${anime.title}"
         >
 

@@ -436,7 +436,10 @@
 
         gap: 20px;
 
-        max-width: 100%;
+    }
+
+    #genre-anime-list.movie-card {
+        width: 350px;
     }
 
     .movie-card {
@@ -450,12 +453,8 @@
        GENRES
     ========================= */
 
-    .genres {
-        padding: 40px 20px;
-    }
-
     .genres h2 {
-        font-size: 32px;
+        font-size: 40px;
 
         text-align: center;
     }

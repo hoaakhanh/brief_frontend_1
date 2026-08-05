@@ -632,3 +632,24 @@ registerForm.addEventListener("submit", function(event) {
         loginModal.classList.remove("hidden");
     }    
 });
+
+
+// Back to Top
+const backToTop = document.getElementById("back-to-top");
+
+// Hiện/ẩn nút khi scroll
+window.addEventListener("scroll", function () {
+    if (window.scrollY > 300) {
+        backToTop.style.display = "block";
+    } else {
+        backToTop.style.display = "none";
+    }
+});
+
+// Cuộn lên đầu trang
+backToTop.addEventListener("click", function () {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});

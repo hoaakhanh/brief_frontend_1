@@ -958,3 +958,34 @@ footer h2 {
     margin-bottom: 0;
 }
 
+/* Back-to-top */
+#back-to-top {
+    position: fixed;
+
+    bottom: 30px;
+    right: 30px;
+
+    width: 50px;
+    height: 50px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: yellow;
+    color: black;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    display: none;
+
+    z-index: 9999;
+
+    transition: .3s;
+}
+
+#back-to-top:hover {
+    transform: scale(1.1);
+    background: orange;
+}

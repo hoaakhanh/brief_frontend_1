@@ -6,6 +6,16 @@
 }
 
 /* Body */
+.container{
+
+    width:100%;
+
+    max-width: 1700px;
+
+    margin:0 auto;
+
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -188,6 +198,10 @@ nav a:hover {
     text-align: center;
 
     animation: fadeUp 1s ease;
+
+    max-width: 1800px;
+
+    margin: 0 auto;
 }
 
 
@@ -273,12 +287,6 @@ nav a:hover {
 
 }
 
-.featured-card{ /* chiem toan bo khong gian trong con lai */
-
-    flex:1;
-
-}
-
 .featured-card h3{
 
     font-size:37px;
@@ -325,9 +333,11 @@ nav a:hover {
 
     grid-template-columns: repeat(4, 1fr);
 
-    gap: 30px;
+    gap: 70px;
 
-    padding: 0px 22px;
+    max-width: 1700px;
+
+    margin: 0 auto;
 }
 
 .movie-grid h3 {
@@ -490,8 +500,14 @@ nav a:hover {
 #genre-anime-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    margin: 60px;
-    gap: 30px;
+    margin: 0 auto;
+    max-width: 1700px;
+    gap: 70px;
+
+}
+
+.genres {
+    padding: 60px 40px;
 }
 
 
@@ -703,6 +719,8 @@ footer h2 {
 #search-result {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+
+    margin: 0 50px;
 }
 
 .search-btn {

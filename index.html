@@ -12,33 +12,32 @@
     </head>
 
     <body id="home"> 
+        <div class="container">
+            <nav>
+                <a class="logo">
+                    <span>AnimeVerse</span>
+                </a>
+
+                <button class="menu-btn">
+                    ☰
+                </button>
+
+                <ul class="nav-menu"> 
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#top-rated">Top Rated</a></li>
+                    <li><a href="#genres">Genres</a></li>
+                    <li><a href="#fav" id="favorites-link">Favorites</a></li>
+                    <li><input type="search" class="search-input" placeholder="Search anime..."></li>
+                    <li><button id="search-btn">Search</button></li>
+                    <li><a type="button" class="login-btn" href="#">Login</a></li>
+                    <li><a type="button" class="logout-btn hidden" href="#">Logout</a></li>
+                    <li class="welcome-text hidden">
+                        Welcome!
+                    </li>
+                </ul>
+            </nav>
+        </div>
         
-        <nav>
-            <a class="logo">
-                <span>AnimeVerse</span>
-            </a>
-
-            <button class="menu-btn">
-                ☰
-            </button>
-
-            <ul class="nav-menu"> 
-                <li><a href="#home">Home</a></li>
-                <li><a href="#top-rated">Top Rated</a></li>
-                <li><a href="#genres">Genres</a></li>
-                <li><a href="#fav" id="favorites-link">Favorites</a></li>
-                <li><input type="search" class="search-input" placeholder="Search anime..."></li>
-                <li><button id="search-btn">Search</button></li>
-                <li><a type="button" class="login-btn" href="#">Login</a></li>
-                <li><a type="button" class="logout-btn hidden" href="#">Logout</a></li>
-                <li class="welcome-text hidden">
-                    Welcome!
-                </li>
-            </ul>
-        </nav>
-        
-
-
         <main> 
             <section class="search-result-div">
                 <div class="bar">
@@ -59,105 +58,112 @@
                 <div class="movie-grid" id="favorite-list"></div>
 
             </section>
+            
+            <div class="container">
+                <section id="feature" class="hero">
 
-            <section id="feature" class="hero">
+                    <h2>🔥 Featured Anime</h2>
 
-                <h2>🔥 Featured Anime</h2>
+                    <div class="featured-card">
+                        <img 
+                            class="featured-image"
+                            src=""
+                            alt=""
+                        >
+                        
+                        <div class="featured-content">
+                            <h3 id="featured-title"></h3>
 
-                <div class="featured-card">
-                    <img 
-                        class="featured-image"
-                        src=""
-                        alt=""
-                    >
-                    
-                    <div class="featured-content">
-                        <h3 id="featured-title"></h3>
+                            <p id="featured-description"></p>
 
-                        <p id="featured-description"></p>
+                            <button id="featured-detail-btn">More Details</button>
+                        </div>
 
-                        <button id="featured-detail-btn">More Details</button>
+
                     </div>
 
-
-                </div>
-
-            </section>
-
-            <section id="top-rated" class="top-rated">
-                <h2>Top Rated</h2>
-
-                <div class="movie-grid" id="anime-list"></div>
-
-            </section>
+                </section>
+            </div>
             
-            <section id="genres" class="genres">
-                <h2>Genres</h2> 
-                <div class="genre-filter">
-                    <button>All</button>
-                    <button>Action</button>
-                    <button>Adventure</button>
-                    <button>Comedy</button>
-                    <button>Fantasy</button>
-                </div>
+            <div class="container">
+                <section id="top-rated" class="top-rated">
+                    <h2>Top Rated</h2>
 
-                <div id="genre-anime-list">
-                    <!-- Genre cards -->
-                </div>
+                    <div class="movie-grid" id="anime-list"></div>
 
-            </section>
+                </section>
+            </div>
+        
+            <div class="container">    
+                <section id="genres" class="genres">
+                    <h2>Genres</h2> 
+                    <div class="genre-filter">
+                        <button>All</button>
+                        <button>Action</button>
+                        <button>Adventure</button>
+                        <button>Comedy</button>
+                        <button>Fantasy</button>
+                    </div>
+
+                    <div id="genre-anime-list">
+                        <!-- Genre cards -->
+                    </div>
+
+                </section>
+            </div>
+
         </main>
 
         
         <footer>
+            <div class="container">
+                <h2>AnimeVerse</h2>
 
-            <h2>AnimeVerse</h2>
+                <p class="footer-description">
+                    Discover your next favorite anime!
+                </p>
 
-            <p class="footer-description">
-                Discover your next favorite anime!
-            </p>
+                <div class="footer-content">
 
-            <div class="footer-content">
+                    <div class="footer-section">
 
-                <div class="footer-section">
+                        <h3>Quick Links</h3>
 
-                    <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#genres">Genres</a></li>
+                            <li><a href="#top-rated">Top Rated</a></li>
+                        </ul>
 
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#genres">Genres</a></li>
-                        <li><a href="#top-rated">Top Rated</a></li>
-                    </ul>
+                    </div>
+
+                    <div class="footer-section">
+
+                        <h3>Contact Us</h3>
+
+                        <p>Email: contact@animeverse.com</p>
+                        <p>Phone: +84 123 456 789</p>
+
+                    </div>
+
+                    <div class="footer-section">
+
+                        <h3>Follow Us</h3>
+
+                        <ul class="footer-social">
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Instagram</a></li>
+                        </ul>
+
+                    </div>
 
                 </div>
 
-                <div class="footer-section">
-
-                    <h3>Contact Us</h3>
-
-                    <p>Email: contact@animeverse.com</p>
-                    <p>Phone: +84 123 456 789</p>
-
-                </div>
-
-                <div class="footer-section">
-
-                    <h3>Follow Us</h3>
-
-                    <ul class="footer-social">
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-
-                </div>
-
+                <p class="copyright">
+                    &copy; 2026 AnimeVerse. All rights reserved.
+                </p>
             </div>
-
-            <p class="copyright">
-                &copy; 2026 AnimeVerse. All rights reserved.
-            </p>
-
         </footer>
 
         <div class="login-modal hidden">

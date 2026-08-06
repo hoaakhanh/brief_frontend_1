@@ -723,8 +723,22 @@ footer h2 {
     margin: 0 50px;
 }
 
-.search-btn {
+.search-input {
+    border-radius: 50px;
+    width: 200px;
+    height: 35px;
+}
+
+
+#search-btn {
     cursor: pointer;
+    border-radius: 50px;
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px;
+
 }
 
 #close-search {

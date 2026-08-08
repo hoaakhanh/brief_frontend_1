@@ -549,6 +549,11 @@ genreButtons.forEach(button =>
 
 // Login - Register
 
+const registerCloseBtn = document.querySelector(".register-close-btn");
+registerCloseBtn.addEventListener("click", function() {
+    registerModal.classList.add("hidden");
+})
+
 const registerForm = document.querySelector(".register-form");
 
 const registerUsername = document.querySelector("#register-username");

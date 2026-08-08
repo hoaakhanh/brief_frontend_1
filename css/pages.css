@@ -1,0 +1,152 @@
+/* Reset CSS */
+* {
+    margin: 0; /* xoa margin mac dinh */
+    padding: 0; /* xoa padding mac dinh */
+    box-sizing: border-box; /* CSS tu can kich thuoc */
+}
+
+/* Body */
+.container{
+
+    width:100%;
+
+    max-width: 1700px;
+
+    margin:0 auto;
+
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+
+}
+
+html {
+    scroll-behavior: smooth; /* cuon muot */
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6; /* Khoang cach giua cac dong chu */
+    background-color: #121212; /* Mau nen du phong kh loi img */ 
+    color: #ffffff; /* Mau chu mac dinh */
+
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), /* lam mo nen */
+        url("../assets/images/background.jpg");
+
+    background-size: cover; /* Phu kin toan bo man hinh (anh co the bi cat) */
+    background-position: center; /* neu anh bi cat - lay center */
+    background-attachment: fixed; /* Co dinh anh nen khi scroll */
+
+}
+
+nav ul {
+    font-weight: bold;
+}
+
+/* Login-Register Pages */
+
+.login-box h2,
+.register-form h2 {
+    font-size: 27px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+
+.login-page,
+.register-page {
+    position:fixed; /* co dinh box */
+    inset:0; /* modal phu kin toan bo man hinh */
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.register-form { /* hop dang nhap */
+    position: relative;
+
+    background:#1f1f1f;
+    padding:30px;
+    border-radius:12px;
+    width:50%; /* chieu rong hop */
+    height: 500px;
+
+}
+
+.login-box {
+    position: relative;
+
+    background:#1f1f1f;
+    padding:30px;
+    border-radius:12px;
+    width:40%; /* chieu rong hop */
+    height: 45%;
+    margin-top: 20px;
+}
+
+.login-form {
+    margin: 20px 0px;
+}
+.login-box input,
+.register-form input { /* khung input */
+    width:100%;
+    height: 60px;
+    padding:20px;
+    font-size: 18px;
+
+}
+
+.login-box p,
+.register-form p {
+    display: flex;
+    gap: 60px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.login-box p a,
+.register-form p a {
+    color: yellow;
+    height: 50px;
+
+    display: flex;
+    justify-content: center;
+}
+
+.login-box .alert,
+.register-form .alert {
+    display: flex;
+    justify-content: center;
+}
+
+
+.email-error,
+.password-error,
+.username-error,
+.register-email-error,
+.register-password-error {
+    color: red;
+
+    font-size: 14px;
+
+    margin-bottom: 10px;
+
+    display: flex;
+    justify-content: start;
+}
+
+.login-form button,
+.register-form button {
+    background-color: yellow;
+    border-radius: 15px;
+    width: 100%;
+    height: 35px;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+

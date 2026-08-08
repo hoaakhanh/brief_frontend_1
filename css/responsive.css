@@ -209,31 +209,34 @@
     }
 
     /* =========================
-       LOGIN MODAL
+       LOGIN, REGISTER
     ========================= */
 
     .login-box {
         width: 100%;
         max-width: 450px;
+        height: 0px;
 
         padding: 30px;
 
         box-sizing: border-box;
     }
-
-
-    /* =========================
-       REGISTER MODAL
-    ========================= */
 
     .register-form {
         width: 100%;
         max-width: 450px;
+        height: 430px;
 
-        padding: 30px;
+        padding: 50px auto;
 
         box-sizing: border-box;
     }
+
+    .register-form input,
+    .login-box input {
+        height: 50px;
+    }
+
 
 
     /* =========================
@@ -496,16 +499,10 @@
        LOGIN MODAL
     ========================= */
 
-    .login-modal {
-        padding: 15px;
-
-        box-sizing: border-box;
-    }
-
     .login-box {
         width: 100%;
 
-        max-width: 400px;
+        max-width: 500px;
 
         padding: 25px 20px;
 
@@ -529,13 +526,15 @@
     }
 
     .login-form button {
-        width: 100%;
+        width: 70px;
+        height: 30px;
+        margin-bottom: 12px;
     }
 
     .login-form p {
         text-align: center;
 
-        font-size: 14px;
+        font-size: 16px;
     }
 
 
@@ -543,16 +542,13 @@
        REGISTER MODAL
     ========================= */
 
-    .register-modal {
-        padding: 15px;
-
-        box-sizing: border-box;
-    }
 
     .register-form {
         width: 100%;
 
-        max-width: 400px;
+        max-width: 350px;
+
+        height: 400px;
 
         padding: 25px 20px;
 
@@ -576,13 +572,14 @@
     }
 
     .register-form button {
-        width: 100%;
+        width: 85px;
+        height: 30px;
     }
 
     .register-form p {
         text-align: center;
 
-        font-size: 14px;
+        font-size: 16px;
     }
 
 

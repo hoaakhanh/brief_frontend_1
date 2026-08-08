@@ -1,41 +1,73 @@
-<div class="login-modal hidden">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AnimeVerse</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <div class="login-box">
+        <link rel="icon" type="image/png" href="../assets/logoicon.png">
 
-        <h2>Login</h2>
+        <link rel="stylesheet" href="../css/responsive.css">
+        <link rel="stylesheet" href="../css/pages.css">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
 
-        <form class="login-form" novalidate> 
+    <body>
+        <div class="container">
+            <nav>
+                <a class="logo">
+                    <span>AnimeVerse</span>
+                </a>
 
-            <input
-                type="email"
-                class="email-input"
-                placeholder="Enter your email">
+                <button class="menu-btn">
+                    ☰
+                </button>
 
-            <p class="email-error"></p>
+                <ul class="nav-menu"> 
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <div class="login-page">
 
-            <input
-                type="password"
-                class="password-input"
-                placeholder="Enter your password">
-            
-            <p class="password-error"></p>
+            <div class="login-box">
 
-            <button type="submit">
-                Login
-            </button>
+                <h2>Login</h2>
 
-            <p>
-                Chưa có tài khoản?
-                
-                <a href="register.html" id="show-register-btn">Register</a>
-            </p>
+                <form class="login-form" novalidate> 
 
-            <button type="button" class="close-btn">
-                ×
-            </button>
+                    <input
+                        type="email"
+                        class="email-input"
+                        placeholder="Enter your email">
 
-        </form>
+                    <p class="email-error"></p>
 
-    </div>
+                    <input
+                        type="password"
+                        class="password-input"
+                        placeholder="Enter your password">
+                    
+                    <p class="password-error"></p>
 
-</div>
+                    <button type="submit">
+                        Login
+                    </button>
+
+                    <p class="alert">
+                        Chưa có tài khoản?
+                        
+                        <a href="register.html" id="show-register-btn">Register</a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <script src="../js/script.js"></script>
+
+    </body>
+</html>

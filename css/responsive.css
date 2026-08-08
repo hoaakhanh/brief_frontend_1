@@ -157,7 +157,6 @@
        TOP RATED / GENRES
     ========================= */
 
-    .anime-grid,
     .movie-grid {
         display: grid;
 
@@ -440,12 +439,11 @@
 
 
     /* =========================
-       ANIME GRID
+       MOVIE GRID
        TOP RATED
        GENRES
     ========================= */
 
-    .anime-grid,
     .movie-grid,
     #genre-anime-list {
         grid-template-columns: 1fr;

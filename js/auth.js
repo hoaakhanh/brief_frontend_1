@@ -19,60 +19,70 @@ const currentUser = JSON.parse(
 );
 
 if (currentUser) {
-    loginBtn.classList.add("hidden");
-    logoutBtn.classList.remove("hidden");
-
-    welcomeText.classList.remove("hidden");
-    welcomeText.textContent = `Welcome ${currentUser.username}`;
+    if (loginBtn) {
+        loginBtn.classList.add("hidden");
+    }
+    if (logoutBtn) {
+        logoutBtn.classList.remove("hidden");
+    }
+   
+    if (welcomeText) {
+        welcomeText.classList.remove("hidden");
+        welcomeText.textContent = `Welcome ${currentUser.username}`;
+    }
+    
 }
 
-loginForm.addEventListener("submit", function (event) {
+if (loginForm) {
+    loginForm.addEventListener("submit", function (event) {
 
-    event.preventDefault(); /* duyet xem co hop le khong */
+        event.preventDefault(); /* duyet xem co hop le khong */
 
-    if (emailInput.value === "") {
-        emailError.textContent = "Please enter your email";
-    }
-    else if (!emailInput.value.includes("@gmail.com")) {
-        emailError.textContent = "Email not available";
-    }
-    else if (passwordInput.value === "") {
-        passwordError.textContent = "Please enter your password";
-    }
-    else if (passwordInput.value.length < 8) {
-        passwordError.textContent = "Password must be at least 8 characters";
-
-    }
-    else {
-        const user = users.find(user => {
-            return user.email === emailInput.value;
-        });
-
-        if (!user) {
+        if (emailInput.value === "") {
+            emailError.textContent = "Please enter your email";
+        }
+        else if (!emailInput.value.includes("@gmail.com")) {
             emailError.textContent = "Email not available";
         }
-        else if (user.password !== passwordInput.value) {
-            passwordError.textContent = "Incorrect password";
+        else if (passwordInput.value === "") {
+            passwordError.textContent = "Please enter your password";
+        }
+        else if (passwordInput.value.length < 8) {
+            passwordError.textContent = "Password must be at least 8 characters";
+
         }
         else {
-            localStorage.setItem("currentUser", JSON.stringify(user));
+            const user = users.find(user => {
+                return user.email === emailInput.value;
+            });
 
-            emailInput.value = "";
-            passwordInput.value = "";
-
-            window.location.href = "index.html";
-
-            loginBtn.classList.add("hidden");
-
-            logoutBtn.classList.remove("hidden");
-
-            welcomeText.classList.remove("hidden");
-
-            welcomeText.textContent = `Welcome ${user.username}`;
+            if (!user) {
+                emailError.textContent = "Email not available";
             }
+            else if (user.password !== passwordInput.value) {
+                passwordError.textContent = "Incorrect password";
+            }
+            else {
+                localStorage.setItem("currentUser", JSON.stringify(user));
 
-        }
-});
+                emailInput.value = "";
+                passwordInput.value = "";
+
+                window.location.href = "index.html";
+
+                loginBtn.classList.add("hidden");
+
+                logoutBtn.classList.remove("hidden");
+
+                welcomeText.classList.remove("hidden");
+
+                welcomeText.textContent = `Welcome ${user.username}`;
+                }
+
+            }
+    });
+
+}
 
 
 // Login - Register
@@ -89,49 +99,51 @@ const registerPasswordError = document.querySelector(".password-error");
 
 let users = JSON.parse(localStorage.getItem("users")) || []; 
 
+if (registerForm) {
+    registerForm.addEventListener("submit", function(event) {
+        event.preventDefault();
 
-registerForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    if (registerUsername.value === "") {
-        registerUsernameError.textContent = "Please enter your username";
-    }
-    else if (registerEmail.value === "") {
-        registerEmailError.textContent = "Please enter your email";
-    }
-    else if (!registerEmail.value.includes("@gmail.com")) {
-        registerEmailError.textContent = "Invalid email";
-    }
-    else if (registerPassword.value === "") {
-        registerPasswordError.textContent = "Please enter your password";
-    }
-    else if (registerPassword.value.length < 8) {
-        registerPasswordError.textContent = "Password must be at least 8 characters";
-
-    }
-    else {
-        // Tao User
-        const newUser = {
-            username: registerUsername.value,
-            email: registerEmail.value,
-            password: registerPassword.value,
-            favorites: [],
+        if (registerUsername.value === "") {
+            registerUsernameError.textContent = "Please enter your username";
         }
+        else if (registerEmail.value === "") {
+            registerEmailError.textContent = "Please enter your email";
+        }
+        else if (!registerEmail.value.includes("@gmail.com")) {
+            registerEmailError.textContent = "Invalid email";
+        }
+        else if (registerPassword.value === "") {
+            registerPasswordError.textContent = "Please enter your password";
+        }
+        else if (registerPassword.value.length < 8) {
+            registerPasswordError.textContent = "Password must be at least 8 characters";
 
-        users.push(newUser);
+        }
+        else {
+            // Tao User
+            const newUser = {
+                username: registerUsername.value,
+                email: registerEmail.value,
+                password: registerPassword.value,
+                favorites: [],
+            }
 
-        localStorage.setItem("users", JSON.stringify(users));
+            users.push(newUser);
 
-        registerUsername.value = "";
-        registerEmail.value = ""; /* tra ve trong khi gap loi */
-        registerPassword.value = ""; /* tra ve trong khi gap loi */
+            localStorage.setItem("users", JSON.stringify(users));
 
-        window.location.href = "login.html";
+            registerUsername.value = "";
+            registerEmail.value = ""; /* tra ve trong khi gap loi */
+            registerPassword.value = ""; /* tra ve trong khi gap loi */
 
-        loginModal.classList.remove("hidden");
-    }    
-});
+            window.location.href = "login.html";
 
+            loginModal.classList.remove("hidden");
+        }    
+    });
+
+
+}
 
 // Logout
 if (logoutBtn) {

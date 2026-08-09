@@ -290,41 +290,48 @@ const closeSearchBtn = document.querySelector("#close-search");
 
 const animeSearch = document.querySelector("#search-result")
 
-searchBtn.addEventListener("click", function() {
-    const keyword = searchInput.value.trim();
+if (searchBtn) {
+    searchBtn.addEventListener("click", function() {
+        const keyword = searchInput.value.trim();
 
-    searchInput.value = ""; /* xoa tu khoa tim kiem sau khi bam nut search */
+        searchInput.value = ""; /* xoa tu khoa tim kiem sau khi bam nut search */
 
-    if (!keyword) {
-        return;
-    }
+        if (!keyword) {
+            return;
+        }
 
-    searchDiv.classList.add("active");
+        searchDiv.classList.add("active");
 
-    fetch(`https://api.jikan.moe/v4/anime?q=${keyword}`)
-        .then(response => response.json())
-        .then(result => {
+        fetch(`https://api.jikan.moe/v4/anime?q=${keyword}`)
+            .then(response => response.json())
+            .then(result => {
 
-            // Xóa Card cũ
-            animeSearch.innerHTML = "";
+                // Xóa Card cũ
+                animeSearch.innerHTML = "";
 
-            // Hiển thị kết quả Search
-            result.data.forEach(anime => {
+                // Hiển thị kết quả Search
+                result.data.forEach(anime => {
 
-                const card = createAnimeCard(anime);
+                    const card = createAnimeCard(anime);
 
-                animeSearch.appendChild(card);
+                    animeSearch.appendChild(card);
 
-            });
-            
-        })
+                });
+                
+            })
 
-});
-closeSearchBtn.addEventListener("click", function() {
+    });
 
-    searchDiv.classList.remove("active");
+}
 
-});
+if (closeSearchBtn) {
+    closeSearchBtn.addEventListener("click", function() {
+
+        searchDiv.classList.remove("active");
+
+    });
+}
+
 
 // Favorite - Navbar
 const favoriteLink = document.querySelector("#favorites-link");

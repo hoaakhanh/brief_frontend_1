@@ -1,106 +1,106 @@
-// Featured 
-//Detail Button
-const genres = anime.genres.map(genre => genre.name);
-featuredDetailBtn.addEventListener("click", function(){
-    detailModal.classList.add("active");
+const params =
+    new URLSearchParams(window.location.search);
 
-    detailInfo.innerHTML = `
-    <h2>${anime.title}</h2>
-
-    <img
-        src="${anime.images.jpg.large_image_url}"
-        alt="${anime.title}"
-    >
-
-    <div class="detail-meta">
-
-        <p class="detail-score">
-            ⭐ ${anime.score || "N/A"}
-        </p>
-
-        <p>
-            Episodes: ${anime.episodes || "N/A"}
-        </p>
-
-        <p>
-            Status: ${anime.status || "N/A"}
-        </p>
-
-        <p>
-            Genres:
-            ${genres.join(" • ") || "N/A"}
-        </p>
-
-        <p>
-            Type: ${anime.type || "N/A"}
-        </p>
-
-        <p>
-            Aired: ${anime.aired?.string || "N/A"}
-        </p>
-    </div>
-
-    <div class="detail-synopsis">
-
-        <h3>Synopsis</h3>
-
-        <p>
-            ${anime.synopsis || "No synopsis available."}
-        </p>
-
-    </div>
-`;
-})
+const animeId =
+    params.get("id");
 
 
-// Function
-detailButton.addEventListener("click", function(){
-        detailModal.classList.add("active");
+const detailTitle =
+    document.querySelector("#detail-title");
 
-        detailInfo.innerHTML = `
-        <h2>${anime.title}</h2>
+const detailImage =
+    document.querySelector("#detail-image");
 
-        <img
-            src="${anime.images.jpg.image_url}"
-            alt="${anime.title}"
-        >
+const detailScore =
+    document.querySelector("#detail-score");
 
-        <div class="detail-meta">
+const detailEpisodes =
+    document.querySelector("#detail-episodes");
 
-            <p class="detail-score">
-                ⭐ ${anime.score || "N/A"}
-            </p>
+const detailStatus =
+    document.querySelector("#detail-status");
 
-            <p>
-                Episodes: ${anime.episodes || "N/A"}
-            </p>
+const detailType =
+    document.querySelector("#detail-type");
 
-            <p>
-                Status: ${anime.status || "N/A"}
-            </p>
+const detailGenres =
+    document.querySelector("#detail-genres");
 
-            <p>
-                Genres:
-                ${genres.join(" • ") || "N/A"}
-            </p>
+const detailAired =
+    document.querySelector("#detail-aired");
 
-            <p>
-                Type: ${anime.type || "N/A"}
-            </p>
+const detailSynopsis =
+    document.querySelector("#detail-synopsis");
 
-            <p>
-                Aired: ${anime.aired?.string || "N/A"}
-            </p>
-        </div>
 
-        <div class="detail-synopsis">
+if (!animeId) {
 
-            <h3>Synopsis</h3>
+    console.error("Anime ID not found");
 
-            <p>
-                ${anime.synopsis || "No synopsis available."}
-            </p>
+} else {
 
-        </div>
-    `;
-    });
+    fetch(`https://api.jikan.moe/v4/anime/${animeId}`)
+
+        .then(response => {
+
+            if (!response.ok) {
+                throw new Error(
+                    `API Error: ${response.status}`
+                );
+            }
+
+            return response.json();
+        })
+
+        .then(result => {
+
+            const anime = result.data;
+
+            const genres =
+                anime.genres.map(
+                    genre => genre.name
+                );
+
+
+            detailTitle.textContent =
+                anime.title;
+
+            detailImage.src =
+                anime.images.jpg.large_image_url;
+
+            detailImage.alt =
+                anime.title;
+
+            detailScore.textContent =
+                anime.score || "N/A";
+
+            detailEpisodes.textContent =
+                anime.episodes || "N/A";
+
+            detailStatus.textContent =
+                anime.status || "N/A";
+
+            detailType.textContent =
+                anime.type || "N/A";
+
+            detailGenres.textContent =
+                genres.join(" • ") || "N/A";
+
+            detailAired.textContent =
+                anime.aired?.string || "N/A";
+
+            detailSynopsis.textContent =
+                anime.synopsis ||
+                "No synopsis available.";
+
+        })
+
+        .catch(error => {
+
+            console.error(
+                "Error loading anime:",
+                error
+            );
+
+        });
+}

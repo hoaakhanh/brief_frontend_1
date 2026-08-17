@@ -50,6 +50,13 @@ function renderFeaturedAnime(anime) {
     if (featuredDescription) {
         featuredDescription.textContent = anime.synopsis || "No synopsis available.";
     }
+
+    if (featuredDetailBtn) {
+        featuredDetailBtn.addEventListener("click", function () {
+            window.location.href =
+                `detail.html?id=${anime.mal_id}`;
+        });
+    }
 }
     
 // Function
@@ -81,6 +88,10 @@ function createAnimeCard(anime) {
     const detailButton = document.createElement("button");
     detailButton.classList.add("detail-btn");
     detailButton.textContent = "More Details";
+    detailButton.addEventListener("click", function () {
+        window.location.href =
+            `detail.html?id=${anime.mal_id}`;
+    });
 
     
     // Favorite Button

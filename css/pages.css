@@ -58,12 +58,13 @@ nav ul {
 
 .login-page,
 .register-page {
-    position:fixed; /* co dinh box */
-    inset:0; /* modal phu kin toan bo man hinh */
+    min-height: 100vh;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
 }
 
 
@@ -181,4 +182,148 @@ nav ul {
     text-align: center;
     width: 100%;
     margin-bottom: 20px;
+}
+
+
+/* =========================
+   Detail Page
+========================= */
+
+.detail-page {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 60px 30px;
+}
+
+
+/* =========================
+   Detail Hero
+========================= */
+
+.detail-hero {
+    display: grid;
+
+    grid-template-columns: 280px 1fr;
+
+    gap: 50px;
+
+    align-items: start;
+
+    padding: 40px;
+
+    background: rgba(31, 31, 31, 0.9);
+
+    border-radius: 15px;
+}
+
+
+/* =========================
+   Poster
+========================= */
+
+.detail-poster img {
+    width: 280px;
+    height: 400px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+
+    display: block;
+}
+
+
+/* =========================
+   Content
+========================= */
+
+.detail-content {
+    padding-top: 10px;
+}
+
+
+.detail-content h1 {
+    font-size: 40px;
+
+    margin-bottom: 20px;
+
+    color: yellow;
+}
+
+
+/* =========================
+   Score
+========================= */
+
+.detail-score {
+    font-size: 22px;
+
+    margin-bottom: 30px;
+
+    color: #ffffff;
+}
+
+
+/* =========================
+   Anime information
+========================= */
+
+.detail-info {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.detail-info p {
+    font-size: 17px;
+
+    color: #ccc;
+}
+
+
+.detail-info strong {
+    color: white;
+
+    margin-right: 8px;
+}
+
+
+/* =========================
+   Synopsis
+========================= */
+
+.detail-synopsis {
+    margin-top: 40px;
+
+    padding: 30px 40px;
+
+    background: rgba(31, 31, 31, 0.9);
+
+    border-radius: 15px;
+}
+
+
+.detail-synopsis h2 {
+    color: yellow;
+
+    font-size: 28px;
+
+    margin-bottom: 20px;
+}
+
+
+.detail-synopsis p {
+    color: #ccc;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    text-align: justify;
 }

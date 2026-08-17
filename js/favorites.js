@@ -11,9 +11,11 @@ const currentUser = JSON.parse(
     localStorage.getItem("currentUser")
 );
 
+
 if (!currentUser) {
-    alert("Please login to view Favorites");
+    alert("Please login to use Your Favorites");
     loadingFavorites = false;
+    
 }
 
 const favoriteIds =

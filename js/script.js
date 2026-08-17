@@ -60,20 +60,6 @@ if (closeSearchBtn) {
 }
 
 
-
-// Detail Modal
-const detailModal = document.querySelector(".detail-modal");
-const detailContent = document.querySelector(".detail-content");
-const detailInfo = document.querySelector("#detail-info");
-
-const closeDetailBtn = document.querySelector("#close-detail");
-if (closeDetailBtn) {
-    closeDetailBtn.addEventListener("click", function(){
-        detailModal.classList.remove("active");
-}); 
-}
-
-
 //Genres 
 const genreButtons = document.querySelectorAll(".genre-filter button");
 const genreAnimeList = document.querySelector("#genre-anime-list");

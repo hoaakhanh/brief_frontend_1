@@ -19,8 +19,6 @@ if (!currentUser) {
 const favoriteIds =
     currentUser.favorites;
 
-favoriteDiv.classList.add("active");
-
 animeFav.innerHTML = "";
 
 
@@ -31,7 +29,6 @@ if (favoriteIds.length === 0) {
 
 }
 
-console.log("Favorite IDs:", favoriteIds);
 
 favoriteIds.forEach((id, index) => {
 

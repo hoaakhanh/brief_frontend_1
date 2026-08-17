@@ -150,3 +150,35 @@ nav ul {
     margin-bottom: 15px;
 }
 
+/* Favorite Page */
+
+#favorite-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+
+    width: 100%;
+    height: auto;
+    max-height: none;
+
+    overflow: visible;
+
+    margin: 40px;
+
+}
+
+.fav-result-div h2 {
+    margin: 30px;
+
+    color: yellow;
+
+    font-size: 30px;
+}
+
+
+#favorite-list {
+  
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}

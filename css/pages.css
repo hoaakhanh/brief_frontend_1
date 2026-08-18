@@ -58,7 +58,7 @@ nav ul {
 
 .login-page,
 .register-page {
-    min-height: 100vh;
+    min-height: 90vh;
 
     display: flex;
     justify-content: center;

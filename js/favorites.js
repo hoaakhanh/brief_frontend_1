@@ -69,7 +69,7 @@ favoriteIds.forEach((id, index) => {
 
             });
 
-    }, index * 1000);
+    }, index * 1000); /* tgian */
 
 });
 

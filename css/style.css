@@ -331,7 +331,7 @@ nav a:hover {
 
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 
     gap: 70px;
 
@@ -603,7 +603,7 @@ footer h2 {
 
 #search-result {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 
     margin: 0 50px;
 }

@@ -1,0 +1,24 @@
+{
+  "name": "animeverse",
+  "version": "1.0.0",
+  "description": "**AnimeVerse** là một website khám phá và quản lý anime được xây dựng bằng **HTML, CSS và JavaScript**. Website cho phép người dùng khám phá các anime nổi bật, tìm kiếm anime, xem thông tin chi tiết và quản lý danh sách anime yêu thích theo từng tài khoản người dùng.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoaakhanh/brief_frontend_tuan1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hoaakhanh/brief_frontend_tuan1/issues"
+  },
+  "homepage": "https://github.com/hoaakhanh/brief_frontend_tuan1#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

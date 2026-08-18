@@ -1,7 +1,6 @@
 /* Login form validation */
 const loginBtn = document.querySelector(".login-btn");
-const closeBtn = document.querySelector(".close-btn");
-const loginModal = document.querySelector(".login-modal");
+
 
 const loginForm = document.querySelector(".login-form");
 const emailInput = document.querySelector(".email-input");
@@ -85,7 +84,7 @@ if (loginForm) {
 }
 
 
-// Login - Register
+// Register
 
 const registerForm = document.querySelector(".register-form");
 
@@ -138,7 +137,6 @@ if (registerForm) {
 
             window.location.href = "login.html";
 
-            loginModal.classList.remove("hidden");
         }    
     });
 

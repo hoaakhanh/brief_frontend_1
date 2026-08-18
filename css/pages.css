@@ -206,7 +206,7 @@ nav ul {
 .detail-hero {
     display: grid;
 
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 280px 1fr; /* chia 2 cot 280px de anh + 1fr de noi dung*/
 
     gap: 50px;
 

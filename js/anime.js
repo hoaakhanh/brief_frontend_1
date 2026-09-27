@@ -64,8 +64,14 @@ function renderFeaturedAnime(anime) {
 function createAnimeCard(anime) {
     //Card
     const card = document.createElement("article"); /* them article */
-    card.classList.add("movie-card"); /* them class cho article de moi article la mot card phim */
-
+    card.classList.add("movie-card", 
+                        "bg-white/10",
+                        "max-w-[350px]",
+                        "rounded-[15px]",
+                        "overflow-hidden",
+                        "transition",
+                        "duration-300",
+                        "text-center"); 
     // Image
     const image = document.createElement("img");
     image.src = anime.images.jpg.large_image_url;
@@ -86,7 +92,18 @@ function createAnimeCard(anime) {
 
     //Detail Button
     const detailButton = document.createElement("button");
-    detailButton.classList.add("detail-btn");
+    detailButton.classList.add("detail-btn",
+        "no-underline",
+        "py-3",
+        "px-5",
+        "bg-yellow-500",
+        "text-black",
+        "rounded-[25px]",
+        "text-[16px]",
+        "inline-block",
+        "m-[10px]",
+        "cursor-pointer"
+    );
     detailButton.textContent = "More Details";
     detailButton.addEventListener("click", function () {
         window.location.href =
@@ -96,7 +113,18 @@ function createAnimeCard(anime) {
     
     // Favorite Button
     const favoriteButton = document.createElement("button");
-    favoriteButton.classList.add("favorite-btn");
+    favoriteButton.classList.add("favorite-btn",
+        "no-underline",
+        "py-3",
+        "px-5",
+        "bg-transparent",
+        "rounded-[25px]",
+        "text-[27px]",
+        "inline-block",
+        "m-[10px]",
+        "border-none",
+        "cursor-pointer"
+    );
     favoriteButton.textContent = "🤍";
 
     favoriteButton.addEventListener("click", function () {

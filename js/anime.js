@@ -127,7 +127,7 @@ function createAnimeCard(anime) {
     );
     favoriteButton.textContent = "🤍";
 
-    favoriteButton.addEventListener("click", function () {
+    favoriteButton.addEventListener("click", async function () {
 
         const currentUser = JSON.parse(
             localStorage.getItem("currentUser")
@@ -138,25 +138,32 @@ function createAnimeCard(anime) {
             return;
         }
 
-        const favoriteIds = currentUser.favorites;
-        const users = JSON.parse(
-            localStorage.getItem("users")
-        ) || [];
+        try{
+            if (favoriteButton.textContent === "🤍") {
 
-        const userIndex = users.findIndex(user => {
-            return user.email === currentUser.email;
-        });
+                // Thêm vào Favorites
 
-        if (userIndex === -1) {
-            return;
-        }
+                const response = await fetch("http://localhost:3000/favorites", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        userEmail: currentUser.email,
+                        mal_id: anime.mal_id,
+                        title: anime.title,
+                    })
+                }
+            );
+                if (!response.ok) {
+                    throw new Error("Failed to add favorite");
+            }
+                const data = await response.json();
 
-        if (favoriteButton.textContent === "🤍") {
+                console.log("Add:", data);
 
-            // Thêm vào Favorites
-            favoriteButton.textContent = "💖";
+                favoriteButton.textContent = "💖";
 
-            favoriteIds.push(anime.mal_id);
 
         } else {
 
@@ -168,7 +175,14 @@ function createAnimeCard(anime) {
             if (index !== -1) {
                 favoriteIds.splice(index, 1);
             }
+
         }
+
+    } catch (error) {
+
+        console.error("Favorite error:", error);
+
+    }
 
     // Cập nhật user
     users[userIndex].favorites = favoriteIds;

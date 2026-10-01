@@ -112,69 +112,76 @@ function createAnimeCard(anime) {
 
     
     // Favorite Button
-    const favoriteButton = document.createElement("button");
-    favoriteButton.classList.add("favorite-btn",
-        "no-underline",
-        "py-3",
-        "px-5",
-        "bg-transparent",
-        "rounded-[25px]",
-        "text-[27px]",
-        "inline-block",
-        "m-[10px]",
-        "border-none",
-        "cursor-pointer"
+const favoriteButton = document.createElement("button");
+
+favoriteButton.type = "button";
+
+favoriteButton.classList.add(
+    "favorite-btn",
+    "no-underline",
+    "py-3",
+    "px-5",
+    "bg-transparent",
+    "rounded-[25px]",
+    "text-[27px]",
+    "inline-block",
+    "m-[10px]",
+    "border-none",
+    "cursor-pointer"
+);
+
+favoriteButton.textContent = "🤍";
+
+
+favoriteButton.addEventListener("click", async function () {
+    favoriteButton.textContent = "💖";
+
+    const currentUser = JSON.parse(
+        localStorage.getItem("currentUser")
     );
-    favoriteButton.textContent = "🤍";
 
-    favoriteButton.addEventListener("click", async function () {
+    if (!currentUser) {
+        alert("Please login to use Favorites");
+        return;
+    }
 
-        const currentUser = JSON.parse(
-            localStorage.getItem("currentUser")
-        );
+    try {
 
-        if (!currentUser) {
-            alert("Please login to use Favorites");
-            return;
-        }
+        if (favoriteButton.textContent === "🤍") {
 
-        try{
-            if (favoriteButton.textContent === "🤍") {
-
-                // Thêm vào Favorites
-
-                const response = await fetch("http://localhost:3000/favorites", {
+            // Thêm vào Favorites
+            const response = await fetch(
+                "http://localhost:3000/favorites",
+                {
                     method: "POST",
+
                     headers: {
                         "Content-Type": "application/json"
                     },
+
                     body: JSON.stringify({
                         userEmail: currentUser.email,
                         mal_id: anime.mal_id,
-                        title: anime.title,
+                        title: anime.title
                     })
                 }
             );
-                if (!response.ok) {
-                    throw new Error("Failed to add favorite");
+
+            if (!response.ok) {
+                throw new Error(
+                    `Failed to add favorite: ${response.status}`
+                );
             }
-                const data = await response.json();
 
-                console.log("Add:", data);
+            const data = await response.json();
 
-                favoriteButton.textContent = "💖";
+            console.log("Add:", data);
 
 
         } else {
 
-            // Xóa khỏi Favorites
-            favoriteButton.textContent = "🤍";
-
-            const index = favoriteIds.indexOf(anime.mal_id);
-
-            if (index !== -1) {
-                favoriteIds.splice(index, 1);
-            }
+            // Chưa làm DELETE
+            console.log("Delete favorite later");
 
         }
 
@@ -184,32 +191,7 @@ function createAnimeCard(anime) {
 
     }
 
-    // Cập nhật user
-    users[userIndex].favorites = favoriteIds;
-
-    localStorage.setItem(
-        "users",
-        JSON.stringify(users)
-    );
-
-    localStorage.setItem(
-        "currentUser",
-        JSON.stringify(users[userIndex])
-    );
 });
-    // Kiểm tra anime đã được yêu thích chưa
-    const currentUser = JSON.parse(
-        localStorage.getItem("currentUser")
-    );
-
-    const favoriteIds = currentUser
-        ? currentUser.favorites
-        : [];
-
-    if (favoriteIds.includes(anime.mal_id)) {
-        favoriteButton.textContent = "💖";
-    }
-        
     // Dua tat ca vao card 
     card.appendChild(image);
     card.appendChild(title);
@@ -219,5 +201,5 @@ function createAnimeCard(anime) {
     card.appendChild(favoriteButton);
     
     return card;
-    
+
 }

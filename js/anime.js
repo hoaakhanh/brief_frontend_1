@@ -132,9 +132,51 @@ favoriteButton.classList.add(
 
 favoriteButton.textContent = "🤍";
 
+// Kiểm tra anime đã được favorite chưa
+async function checkFavorite() {
+
+    const currentUser = JSON.parse(
+        localStorage.getItem("currentUser")
+    );
+
+    if (!currentUser) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:3000/favorites?userEmail=${currentUser.email}`
+        );
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch favorites");
+        }
+
+        const favorites = await response.json();
+
+        const isFavorite = favorites.some(favorite => {
+            return favorite.mal_id === anime.mal_id;
+        });
+
+        if (isFavorite) {
+            favoriteButton.textContent = "💖";
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Failed to fetch favorites:",
+            error
+        );
+
+    }
+}
+
+checkFavorite();
+
 
 favoriteButton.addEventListener("click", async function () {
-    favoriteButton.textContent = "💖";
 
     const currentUser = JSON.parse(
         localStorage.getItem("currentUser")
@@ -148,6 +190,15 @@ favoriteButton.addEventListener("click", async function () {
     try {
 
         if (favoriteButton.textContent === "🤍") {
+            const checkResponse = await fetch(`http://localhost:3000/favorites?userEmail=${encodeURIComponent(currentUser.email)}&mal_id=${anime.mal_id}`);
+
+            const existingFavorites = await checkResponse.json();
+
+            if (existingFavorites.length >0) {
+                console.log("Anime already in favorites");
+                favoriteButton.textContent = "💖";
+                return;
+            } 
 
             // Thêm vào Favorites
             const response = await fetch(
@@ -177,19 +228,56 @@ favoriteButton.addEventListener("click", async function () {
 
             console.log("Add:", data);
 
+            favoriteButton.textContent = "💖";
+
 
         } else {
 
-            // Chưa làm DELETE
-            console.log("Delete favorite later");
+            // DELETE
+            const response = await fetch(`http://localhost:3000/favorites?userEmail=${encodeURIComponent(currentUser.email)}&mal_id=${anime.mal_id}`);
 
-        }
+            if (!response.ok) {
+                throw new Error('Failed to find favorite');
+            }
 
-    } catch (error) {
+            const favorites = await response.json();
 
-        console.error("Favorite error:", error);
+            console.log("Current user:", currentUser.email);
+            console.log("Anime mal_id:", anime.mal_id);
+            console.log("Favorites:", favorites);
 
-    }
+            //Khong tim thay favorite
+            if (favorites.length === 0) {
+                console.log('Favorite not found');
+                return;
+            }
+            // Lấy record đầu tiên thoan man dieu kien (userEmail va mal_id)
+            const favorite = favorites[0];
+
+            // Xóa khỏi database
+            const deleteResponse = await fetch(
+                `http://localhost:3000/favorites/${favorite.id}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+            if (!deleteResponse.ok) {
+                throw new Error("Failed to delete favorite");
+            }
+
+            console.log("Deleted:", favorite);
+
+            // Đổi icon
+            favoriteButton.textContent = "🤍";
+
+                }
+
+            } catch (error) {
+
+                console.error("Favorite error:", error);
+
+            }
 
 });
     // Dua tat ca vao card 

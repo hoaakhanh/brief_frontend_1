@@ -2,11 +2,11 @@
 const menuBtn = document.querySelector(".menu-btn");
 const navMenu = document.querySelector(".nav-menu");
 
-menuBtn.addEventListener("click", function () { /* an dau 3 gach thi hien thi noi dung */
-
-    navMenu.classList.toggle("active");
-
-});
+if (menuBtn && navMenu) {
+    menuBtn.addEventListener("click", function () {
+        navMenu.classList.toggle("active");
+    });
+}
 
 // Search Input
 const searchInput = document.querySelector(".search-input");
@@ -29,14 +29,24 @@ if (searchBtn) {
 
         searchDiv.classList.add("active");
 
-        fetch(`https://api.jikan.moe/v4/anime?q=${keyword}`)
-            .then(response => response.json())
+        fetch(
+            `https://api.jikan.moe/v4/anime?q=${encodeURIComponent(encodeURIComponent(keyword))}`
+        )
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Jikan API Error: ${response.status}`);
+                }
+
+                return response.json();
+            })
             .then(result => {
 
-                // Xóa Card cũ
                 animeSearch.innerHTML = "";
 
-                // Hiển thị kết quả Search
+                if (!result.data) {
+                    throw new Error("Jikan response does not contain data");
+                }
+
                 result.data.forEach(anime => {
 
                     const card = createAnimeCard(anime);
@@ -46,9 +56,11 @@ if (searchBtn) {
                 });
                 
             })
-
+            .catch(error => {
+                console.error("Search failed:", error);
+            });
+            
     });
-
 }
 
 if (closeSearchBtn) {
@@ -64,36 +76,38 @@ if (closeSearchBtn) {
 const genreButtons = document.querySelectorAll(".genre-filter button");
 const genreAnimeList = document.querySelector("#genre-anime-list");
 
-genreButtons.forEach(button => 
-    button.addEventListener("click", function() {
-        //xoa "active" nut cu
-        genreButtons.forEach(button => {
-            button.classList.remove("active");
-        });
-        //add "active" nut vua click
-        button.classList.add("active");
-
-        const genreName = button.textContent;
-
-        const filteredAnime = allAnime.filter(anime => {
-            return anime.genres.some(genre => {
-                return genre.name === genreName;
-        });
-    });
-        genreAnimeList.innerHTML = "";
-        if (genreName === "All") {
-            allAnime.forEach(anime => {
-                const card = createAnimeCard(anime);
-                genreAnimeList.appendChild(card);
+if (genreAnimeList) {
+    genreButtons.forEach(button => 
+        button.addEventListener("click", function() {
+            //xoa "active" nut cu
+            genreButtons.forEach(button => {
+                button.classList.remove("active");
             });
-        } else {
-            filteredAnime.forEach(anime => {
-                const card = createAnimeCard(anime);
-                genreAnimeList.appendChild(card);
+            //add "active" nut vua click
+            button.classList.add("active");
+
+            const genreName = button.textContent;
+
+            const filteredAnime = allAnime.filter(anime => {
+                return anime.genres.some(genre => {
+                    return genre.name === genreName;
             });
-        }
-    })
-)
+        });
+            genreAnimeList.innerHTML = "";
+            if (genreName === "All") {
+                allAnime.forEach(anime => {
+                    const card = createAnimeCard(anime);
+                    genreAnimeList.appendChild(card);
+                });
+            } else {
+                filteredAnime.forEach(anime => {
+                    const card = createAnimeCard(anime);
+                    genreAnimeList.appendChild(card);
+                });
+            }
+        })
+    )
+}
 
 // Back to Top
 const backToTop = document.getElementById("back-to-top");

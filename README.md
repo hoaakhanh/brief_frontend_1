@@ -1,4 +1,4 @@
-AnimeVerse
+**AnimeVerse**
 AnimeVerse is a responsive anime discovery website built as a frontend
 learning project. Users can explore anime, search for titles, view anime
 details, and maintain a personal favorites list. Firebase Authentication

@@ -39,7 +39,7 @@ if (!animeId) {
 
 } else {
 
-    fetch(`https://api.jikan.moe/v4/anime/${animeId}`)
+    fetch(`https://api.tenrai.org/v1/anime/${animeId}`)
 
         .then(response => {
 

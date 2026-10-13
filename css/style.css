@@ -634,3 +634,32 @@ footer h2 {
     transform: scale(1.1);
     background: orange;
 }
+
+
+/* Favorite button */
+.movie-card .favorite-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    margin: 10px;
+
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+
+    font-size: 27px;
+    line-height: 1;
+
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.movie-card .favorite-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: scale(1.1);
+}

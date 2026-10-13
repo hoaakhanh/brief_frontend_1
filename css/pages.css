@@ -168,6 +168,18 @@ nav ul {
 
 }
 
+/* Card anime */
+#favorite-list .movie-card {
+    width: 100%;
+    max-width: 350px;
+    min-width: 0;
+    height: auto;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+}
+
 .fav-result-div h2 {
     margin: 30px;
 

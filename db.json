@@ -4,19 +4,7 @@
       "userEmail": "hoa@gmail.com",
       "mal_id": 52991,
       "title": "Sousou no Frieren",
-      "id": "rdzX07J8KgI"
-    },
-    {
-      "userEmail": "hoa@gmail.com",
-      "mal_id": 61316,
-      "title": "Re:Zero kara Hajimeru Isekai Seikatsu 4th Season",
-      "id": "vYrV-WviLzM"
-    },
-    {
-      "userEmail": "hoa@gmail.com",
-      "mal_id": 5114,
-      "title": "Fullmetal Alchemist: Brotherhood",
-      "id": "HXO9iL7mbj4"
+      "id": "s78qRiVeHGc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

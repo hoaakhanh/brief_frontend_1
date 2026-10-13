@@ -1,3 +1,16 @@
+import { auth, database } from "../firebase.js";
+
+import {
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+import {
+    ref,
+    get,
+    set,
+    remove
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
 /* API */
 const animeList = document.querySelector("#anime-list");
 
@@ -64,7 +77,7 @@ function renderFeaturedAnime(anime) {
     
 // Function
 
-function createAnimeCard(anime) {
+export function createAnimeCard(anime) {
     //Card
     const card = document.createElement("article"); /* them article */
     card.classList.add("movie-card", 
@@ -115,174 +128,100 @@ function createAnimeCard(anime) {
 
     
     // Favorite Button
-const favoriteButton = document.createElement("button");
+    const favoriteButton = document.createElement("button");
 
-favoriteButton.type = "button";
+    favoriteButton.type = "button";
 
-favoriteButton.classList.add(
-    "favorite-btn",
-    "no-underline",
-    "py-3",
-    "px-5",
-    "bg-transparent",
-    "rounded-[25px]",
-    "text-[27px]",
-    "inline-block",
-    "m-[10px]",
-    "border-none",
-    "cursor-pointer"
-);
-
-favoriteButton.textContent = "🤍";
-
-// Kiểm tra anime đã được favorite chưa
-async function checkFavorite() {
-
-    const currentUser = JSON.parse(
-        localStorage.getItem("currentUser")
+    favoriteButton.classList.add(
+        "favorite-btn",
+        "no-underline",
+        "py-3",
+        "px-5",
+        "bg-transparent",
+        "rounded-[25px]",
+        "text-[27px]",
+        "inline-block",
+        "m-[10px]",
+        "border-none",
+        "cursor-pointer"
     );
 
-    if (!currentUser) {
+    favoriteButton.textContent = "🤍";
+
+    // Kiểm tra anime đã được favorite chưa
+    async function checkFavorite() {
+    const user = auth.currentUser;
+
+    if (!user) {
+        favoriteButton.textContent = "🤍";
         return;
     }
 
     try {
-
-        const response = await fetch(
-            `http://localhost:3000/favorites?userEmail=${currentUser.email}`
+        const favoriteRef = ref(
+            database,
+            `users/${user.uid}/favorites/${anime.mal_id}`
         );
 
-        if (!response.ok) {
-            throw new Error("Failed to fetch favorites");
-        }
+        const snapshot = await get(favoriteRef);
 
-        const favorites = await response.json();
-
-        const isFavorite = favorites.some(favorite => {
-            return favorite.mal_id === anime.mal_id;
-        });
-
-        if (isFavorite) {
-            favoriteButton.textContent = "💖";
-        }
+        favoriteButton.textContent = snapshot.exists()
+            ? "💖"
+            : "🤍";
 
     } catch (error) {
-
-        console.error(
-            "Failed to fetch favorites:",
-            error
-        );
-
+        console.error("Failed to fetch favorites from Firebase:", error);
     }
 }
+    onAuthStateChanged(auth, (user) => {
+        checkFavorite(user);
+    });
 
-checkFavorite();
 
+    favoriteButton.addEventListener("click", async function () {
+        const user = auth.currentUser;
 
-favoriteButton.addEventListener("click", async function () {
+        // Kiểm tra đăng nhập
+        if (!user) {
+            alert("Please login to use Favorites");
+            return;
+        }
 
-    const currentUser = JSON.parse(
-        localStorage.getItem("currentUser")
-    );
+        try {
+            const favoriteRef = ref(
+                database,
+                `users/${user.uid}/favorites/${anime.mal_id}`
+            );
 
-    if (!currentUser) {
-        alert("Please login to use Favorites");
-        return;
-    }
+            // Kiểm tra anime đã được yêu thích chưa
+            const snapshot = await get(favoriteRef);
 
-    try {
+            if (snapshot.exists()) {
+                // Đã yêu thích -> xóa khỏi Firebase
+                await remove(favoriteRef);
 
-        if (favoriteButton.textContent === "🤍") {
-            const checkResponse = await fetch(`http://localhost:3000/favorites?userEmail=${encodeURIComponent(currentUser.email)}&mal_id=${anime.mal_id}`);
+                favoriteButton.textContent = "🤍";
 
-            const existingFavorites = await checkResponse.json();
+                console.log("Removed from Favorites:", anime.title);
+            } else {
+                // Chưa yêu thích -> thêm vào Firebase
+                await set(favoriteRef, {
+                    mal_id: anime.mal_id,
+                    title: anime.title_english || anime.title,
+                    image: anime.images.jpg.large_image_url,
+                    score: anime.score
+                });
 
-            if (existingFavorites.length >0) {
-                console.log("Anime already in favorites");
                 favoriteButton.textContent = "💖";
-                return;
-            } 
 
-            // Thêm vào Favorites
-            const response = await fetch(
-                "http://localhost:3000/favorites",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        userEmail: currentUser.email,
-                        mal_id: anime.mal_id,
-                        title: anime.title
-                    })
-                }
-            );
-
-            if (!response.ok) {
-                throw new Error(
-                    `Failed to add favorite: ${response.status}`
-                );
+                console.log("Added to Favorites:", anime.title);
             }
-
-            const data = await response.json();
-
-            console.log("Add:", data);
-
-            favoriteButton.textContent = "💖";
-
-
-        } else {
-
-            // DELETE
-            const response = await fetch(`http://localhost:3000/favorites?userEmail=${encodeURIComponent(currentUser.email)}&mal_id=${anime.mal_id}`);
-
-            if (!response.ok) {
-                throw new Error('Failed to find favorite');
-            }
-
-            const favorites = await response.json();
-
-            console.log("Current user:", currentUser.email);
-            console.log("Anime mal_id:", anime.mal_id);
-            console.log("Favorites:", favorites);
-
-            //Khong tim thay favorite
-            if (favorites.length === 0) {
-                console.log('Favorite not found');
-                return;
-            }
-            // Lấy record đầu tiên thoan man dieu kien (userEmail va mal_id)
-            const favorite = favorites[0];
-
-            // Xóa khỏi database
-            const deleteResponse = await fetch(
-                `http://localhost:3000/favorites/${favorite.id}`,
-                {
-                    method: "DELETE"
-                }
-            );
-
-            if (!deleteResponse.ok) {
-                throw new Error("Failed to delete favorite");
-            }
-
-            console.log("Deleted:", favorite);
-
-            // Đổi icon
-            favoriteButton.textContent = "🤍";
-
-                }
-
-            } catch (error) {
-
-                console.error("Favorite error:", error);
-
-            }
-
+        } catch (error) {
+            console.error("Firebase Favorites error:", error);
+            alert("Không thể cập nhật Favorites. Vui lòng thử lại.");
+        }
 });
+
     // Dua tat ca vao card 
     card.appendChild(image);
     card.appendChild(title);

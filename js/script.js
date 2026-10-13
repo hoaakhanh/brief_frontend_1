@@ -30,7 +30,7 @@ if (searchBtn) {
         searchDiv.classList.add("active");
 
         fetch(
-            `https://api.tenrai.org/v1/top/anime?q=${encodeURIComponent(encodeURIComponent(keyword))}`
+            `https://api.tenrai.org/v1/anime?q=${encodeURIComponent(encodeURIComponent(keyword))}`
         )
             .then(response => {
                 if (!response.ok) {

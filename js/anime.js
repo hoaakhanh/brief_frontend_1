@@ -4,32 +4,35 @@ const animeList = document.querySelector("#anime-list");
 let allAnime = [];
 
 if (animeList) {
-    fetch("https://api.jikan.moe/v4/top/anime")
-        .then(response => response.json())
-        .then(result => {
-            allAnime = result.data;
-            const anime = result.data;
-            // Feature
-            const featuredAnime = result.data[0];
+    fetch("https://api.tenrai.org/v1/top/anime")
+        .then(response => {
+            console.log("Jikan HTTP status:", response.status);
 
+            if (!response.ok) {
+                throw new Error(`Jikan API error: ${response.status}`);
+            }
+
+            return response.json();
+        })
+        .then(result => {
+            if (!result.data || result.data.length === 0) {
+                throw new Error("API không trả về danh sách anime.");
+            }
+
+            allAnime = result.data;
+
+            const featuredAnime = result.data[0];
             renderFeaturedAnime(featuredAnime);
 
-            // Top-Rated
-            result.data.forEach(anime => { /* lay tu kho ttin */
+            result.data.forEach(anime => {
                 if (anime.score >= 9.0) {
                     const card = createAnimeCard(anime);
-
-                    // Dua cac card vao list
-                    animeList.appendChild(card); /* dua card vao movie-grid */
-                    }
-                
+                    animeList.appendChild(card);
+                }
             });
         })
         .catch(error => {
-            console.error(
-                "Failed to fetch anime:",
-                error
-            );
+            console.error("Failed to fetch anime:", error);
         });
 }
 
